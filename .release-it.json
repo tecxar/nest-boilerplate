@@ -4,5 +4,9 @@
   },
   "github": {
     "release": true
+  },
+  "hooks": {
+    "after:git:release": "echo Successfully released on Github ${name} v${version} to ${repo.repository}.",
+    "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
   }
 }

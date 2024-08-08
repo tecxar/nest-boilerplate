@@ -1,4 +1,15 @@
 #!/usr/bin/env sh
-. "$(dirname "$0")/_/husky.sh"
+. "$(dirname -- "$0")/_/husky.sh"
 
-yarn lint-staged
+echo '🏗️👷 Styling, testing and building your project before committing'
+
+# Running Lint-Staged
+npm run lint-staged ||
+(
+    echo '🤢🤮🤢🤮 Your code looks disgusting, Format or Styling is not up-to the standards. 🤢🤮🤢🤮
+            Lint Staged check failed. Run npm run format & npm run lint, add changes and try commit again.';
+    false;
+)
+
+# If everything passes... Now we can commit
+echo '✅✅✅✅ You win this time... I am committing this now. ✅✅✅✅'
