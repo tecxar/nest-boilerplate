@@ -1,24 +1,25 @@
 {
-  "tabWidth": 2,
-  "singleQuote": true,
-  "trailingComma": "all",
-  "printWidth": 120,
-  "arrowParens": "avoid",
-  "endOfLine": "auto",
-  "semi": true,
-  "overrides": [
-    {
-      "files": "*.json",
-      "options": {
-        "singleQuote": false
-      }
-    },
-    {
-      "files": ".*rc",
-      "options": {
-        "singleQuote": false,
-        "parser": "json"
-      }
-    }
-  ]
+	"tabWidth": 2,
+	"singleQuote": true,
+	"trailingComma": "all",
+	"printWidth": 120,
+	"arrowParens": "avoid",
+	"endOfLine": "auto",
+	"semi": true,
+	"useTabs": true,
+	"overrides": [
+		{
+			"files": "*.json",
+			"options": {
+				"singleQuote": false
+			}
+		},
+		{
+			"files": ".*rc",
+			"options": {
+				"singleQuote": false,
+				"parser": "json"
+			}
+		}
+	]
 }
