@@ -48,7 +48,7 @@ Routes is following REST standard (Richardson level 3)
 </p>
 </details>`,
 		)
-		.addBasicAuth({});
+		.addBasicAuth();
 
 	if (process.env.API_VERSION) {
 		documentBuilder.setVersion(process.env.API_VERSION);
