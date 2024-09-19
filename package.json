@@ -14,7 +14,7 @@
     "format": "prettier --write \"{src,apps,libs,test}/**/*.{ts,tsx,js,jsx,json}\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "lint-staged": "lint-staged",
-    "prepare": "husky install",
+    "prepare": "husky",
     "release": "release-it",
     "start": "nest start",
     "start:debug": "nest start --debug --watch",

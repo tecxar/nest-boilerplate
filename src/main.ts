@@ -14,6 +14,7 @@ import {
 } from '@nestjs/common';
 import { ApiConfigService } from './config/api-config.service';
 import { setupSwagger } from './setup-swagger';
+import { RmqService } from 'libs/common/src';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, new ExpressAdapter(), { cors: true });
@@ -51,11 +52,6 @@ async function bootstrap() {
 
   // only start nats if it is enabled
   if (configService.microserviceEnabled) {
-    const natsConfig = configService.natsConfig;
-    const rmqService = app.get<RmqService>(RmqService);
-    app.connectMicroservice(rmqService.getOptions(Services.socket, true, false));
-    app.connectMicroservice(rmqService.getOptions(Services.app, true, true));
-
     await app.startAllMicroservices();
   }
 
