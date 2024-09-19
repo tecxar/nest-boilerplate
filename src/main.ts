@@ -1,26 +1,78 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ExpressAdapter, NestExpressApplication } from '@nestjs/platform-express';
 import helmet from 'helmet';
-import morgan from 'morgan';
 import compression from 'compression';
+import { HttpExceptionFilter } from './filters/bad-request.filter';
+import {
+  ClassSerializerInterceptor,
+  HttpStatus,
+  RequestMethod,
+  UnprocessableEntityException,
+  ValidationPipe,
+  VersioningType,
+} from '@nestjs/common';
+import { ApiConfigService } from './config/api-config.service';
+import { setupSwagger } from './setup-swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, new ExpressAdapter(), { cors: true });
   app.enable('trust proxy'); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
+  app.disable('x-powered-by');
 
   app.use(helmet());
-  // app.setGlobalPrefix('/api'); use api as global prefix if you don't have subdomain
+  app.setGlobalPrefix('/api', {
+    exclude: [{ path: 'metrics', method: RequestMethod.GET }],
+  }); // use api as global prefix if you don't have subdomain
+
   app.use(compression());
-  app.use(morgan('combined'));
-  app.use(morgan('combined'));
-  app.enableVersioning();
+
+  app.enableVersioning({
+    type: VersioningType.URI,
+  });
+
+  const reflector = app.get(Reflector);
+
+  app.useGlobalFilters(new HttpExceptionFilter(reflector));
+
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector));
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
+      transform: true,
+      dismissDefaultMessages: true,
+      exceptionFactory: errors => new UnprocessableEntityException(errors),
+    }),
+  );
+
+  const configService = app.get(ApiConfigService);
+
+  // only start nats if it is enabled
+  if (configService.microserviceEnabled) {
+    const natsConfig = configService.natsConfig;
+    const rmqService = app.get<RmqService>(RmqService);
+    app.connectMicroservice(rmqService.getOptions(Services.socket, true, false));
+    app.connectMicroservice(rmqService.getOptions(Services.app, true, true));
+
+    await app.startAllMicroservices();
+  }
+
+  if (configService.documentationEnabled) {
+    setupSwagger(app);
+  }
 
   // Starts listening for shutdown hooks
-  // if (!configService.isDevelopment) {
-  //   app.enableShutdownHooks();
-  // }
+  if (!configService.isDevelopment) {
+    app.enableShutdownHooks();
+  }
 
-  await app.listen(3000);
+  const port = configService.appConfig.port;
+  await app.listen(port);
+
+  console.info(`server running on ${await app.getUrl()}`);
+
+  return app;
 }
 bootstrap();
