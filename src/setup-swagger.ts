@@ -3,7 +3,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 /**
  *
- * @param app
+ * @param {INestApplication} app NestJS Application Instance
  */
 export function setupSwagger(app: INestApplication): void {
 	const documentBuilder = new DocumentBuilder()

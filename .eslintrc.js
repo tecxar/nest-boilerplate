@@ -9,7 +9,7 @@ module.exports = {
 	extends: [
 		'plugin:@darraghor/nestjs-typed/recommended',
 		'plugin:@typescript-eslint/recommended',
-		'plugin:jsdoc/recommended-typescript',
+		'plugin:jsdoc/recommended',
 		'plugin:prettier/recommended',
 	],
 	root: true,

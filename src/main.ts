@@ -16,7 +16,7 @@ import { ApiConfigService } from './config/api-config.service';
 import { setupSwagger } from './setup-swagger';
 
 /**
- *
+ * @returns {NestExpressApplication}  Retuns an instance of NestJS Application
  */
 async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule, new ExpressAdapter(), { cors: true });
