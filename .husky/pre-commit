@@ -8,5 +8,13 @@ yarn lint-staged ||
     false;
 )
 
+# Running Lint
+yarn lint ||
+(
+    echo '🤢🤮🤢🤮 Your code looks disgusting, Code Comment is not upto the mark is not up-to the standards. 🤢🤮🤢🤮
+            Run yarn lint to check what went wrong';
+    false;
+)
+
 # If everything passes... Now we can commit
 echo '✅✅✅✅ You win this time... I am committing this now. ✅✅✅✅'
