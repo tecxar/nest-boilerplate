@@ -4,7 +4,7 @@
 echo '🏗️👷 Styling, testing and building your project before committing'
 
 # Running Lint-Staged
-yarn lint-staged ||
+npx lint-staged ||
 (
     echo '🤢🤮🤢🤮 Your code looks disgusting, Format or Styling is not up-to the standards. 🤢🤮🤢🤮
             Lint Staged check failed. Run npm run format & npm run lint, add changes and try commit again.';
