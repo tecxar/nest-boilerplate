@@ -15,6 +15,9 @@ import {
 import { ApiConfigService } from './config/api-config.service';
 import { setupSwagger } from './setup-swagger';
 
+/**
+ *
+ */
 async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule, new ExpressAdapter(), { cors: true });
 	app.enable('trust proxy'); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)

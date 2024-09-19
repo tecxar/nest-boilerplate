@@ -1,6 +1,10 @@
 import type { INestApplication } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
+/**
+ *
+ * @param app
+ */
 export function setupSwagger(app: INestApplication): void {
 	const documentBuilder = new DocumentBuilder()
 		.setTitle('API')
