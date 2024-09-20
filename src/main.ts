@@ -14,16 +14,20 @@ import {
 } from '@nestjs/common';
 import { ApiConfigService } from './config/api-config.service';
 import { setupSwagger } from './setup-swagger';
+import { ConfigService } from '@nestjs/config';
 
 /**
  * @returns {NestExpressApplication}  Retuns an instance of NestJS Application
  */
 async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule, new ExpressAdapter(), { cors: true });
+
 	app.enable('trust proxy'); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
+
 	app.disable('x-powered-by');
 
 	app.use(helmet());
+
 	app.setGlobalPrefix('/api', {
 		exclude: [{ path: 'metrics', method: RequestMethod.GET }],
 	}); // use api as global prefix if you don't have subdomain
@@ -51,7 +55,8 @@ async function bootstrap() {
 		}),
 	);
 
-	const configService = app.get(ApiConfigService);
+	const congig = app.get(ConfigService);
+	const configService = new ApiConfigService(congig);
 
 	// only start nats if it is enabled
 	if (configService.microserviceEnabled) {
@@ -68,9 +73,10 @@ async function bootstrap() {
 	}
 
 	const port = configService.appConfig.port;
-	await app.listen(port);
 
-	console.info(`server running on ${await app.getUrl()}`);
+	app.listen(port).then(async () => {
+		console.info(`server running on ${await app.getUrl()}`);
+	});
 
 	return app;
 }
