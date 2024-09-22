@@ -54,16 +54,16 @@ Routes is following REST standard (Richardson level 3)
 		)
 		.addBasicAuth();
 
-	if (process.env.API_VERSION) {
-		documentBuilder.setVersion(process.env.API_VERSION);
-	}
+	documentBuilder.setVersion(process.env.npm_package_version ?? '');
 
 	const document = SwaggerModule.createDocument(app, documentBuilder.build());
-	SwaggerModule.setup('documentation', app, document, {
+	SwaggerModule.setup('/api-docs', app, document, {
+		useGlobalPrefix: true,
+		customSiteTitle: 'NestJS App',
 		swaggerOptions: {
 			persistAuthorization: true,
 		},
 	});
 
-	console.info(`Documentation: http://localhost:${process.env.PORT}/documentation`);
+	console.info(`Documentation: http://localhost:${process.env.PORT}/api/v1/api-docs`);
 }

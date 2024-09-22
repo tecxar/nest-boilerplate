@@ -28,6 +28,8 @@ async function bootstrap() {
 
 	app.use(helmet());
 
+	app.useBodyParser('json', { limit: '50mb' });
+
 	app.setGlobalPrefix('/api', {
 		exclude: [{ path: 'metrics', method: RequestMethod.GET }],
 	}); // use api as global prefix if you don't have subdomain
