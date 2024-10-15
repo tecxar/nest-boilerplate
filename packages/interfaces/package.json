@@ -1,7 +1,7 @@
 {
-  "name": "@cleardu/demo-ws",
+  "name": "@cleardu/interfaces",
   "version": "10.4.4",
-  "description": "Nest - modern, fast, powerful node.js web framework (@demo-ws)",
+  "description": "Nest - modern, fast, powerful node.js web framework (@interfaces)",
   "author": "Kamil Mysliwiec",
   "license": "MIT",
   "homepage": "https://nestjs.com",
@@ -12,7 +12,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/nestjs/nest.git",
-    "directory": "packages/demo-ws"
+    "directory": "packages/interfaces"
   },
   "publishConfig": {
     "access": "public"
