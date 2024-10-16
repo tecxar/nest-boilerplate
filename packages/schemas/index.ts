@@ -6,3 +6,4 @@
  */
 
 export * from './break.model';
+export * from './base.model';
