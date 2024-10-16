@@ -8,3 +8,8 @@ export interface IConfig {
   DB_PASSWORD: string;
   DB_NAME: string;
 }
+
+export interface IMigrationConfig {
+  isDev: boolean;
+  dirPath: string;
+}

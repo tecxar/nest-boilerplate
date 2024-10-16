@@ -8,3 +8,4 @@ export * from './redis/redis.module';
 export * from './db/app.database.module';
 export * from './rmq/rmq.service';
 export * from './rmq/rmq.module';
+export * from './migration/migration.module';

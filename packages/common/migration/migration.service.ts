@@ -1,5 +1,5 @@
+import { IMigrationConfig } from '@cleardu/interfaces';
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { Sequelize } from 'sequelize-typescript';
 import { MigrationMeta, SequelizeStorage, Umzug } from 'umzug';
 
@@ -7,29 +7,25 @@ import { MigrationMeta, SequelizeStorage, Umzug } from 'umzug';
 export class MigrationConfigService implements OnModuleInit {
   private logger: Logger = new Logger(MigrationConfigService.name);
   private sequelize: Sequelize;
-  private config: ConfigService;
-  private dirPath: string;
-  get isDev() {
-    return (
-      (this.config.get<string>('NODE_ENV') ?? 'development').toLowerCase() ==
-      'development'
-    );
-  }
+  private config: IMigrationConfig;
+
   get migrationsPath(): string {
     return `./migrations/*.js`;
   }
   get seedersPath(): string {
     return `./seeders/*.js`;
   }
-  constructor(sequelize: Sequelize, config: ConfigService, dirPath: string) {
+  constructor(sequelize: Sequelize, config: IMigrationConfig) {
     this.sequelize = sequelize;
     this.config = config;
-    this.dirPath = dirPath;
   }
   async onModuleInit() {
     const migrations = new Umzug({
       migrations: {
-        glob: [this.migrationsPath, { cwd: this.dirPath, ignore: '*.gitkeep' }],
+        glob: [
+          this.migrationsPath,
+          { cwd: this.config.dirPath, ignore: '*.gitkeep' },
+        ],
       },
       context: this.sequelize.getQueryInterface(),
       storage: new SequelizeStorage({ sequelize: this.sequelize }),
@@ -37,7 +33,10 @@ export class MigrationConfigService implements OnModuleInit {
     });
     const seeders = new Umzug({
       migrations: {
-        glob: [this.seedersPath, { cwd: this.dirPath, ignore: '*.gitkeep' }],
+        glob: [
+          this.seedersPath,
+          { cwd: this.config.dirPath, ignore: '*.gitkeep' },
+        ],
       },
       context: this.sequelize.getQueryInterface(),
       storage: new SequelizeStorage({ sequelize: this.sequelize }),
