@@ -1,7 +1,7 @@
 {
-  "name": "@cleardu/schemas",
-  "version": "10.4.4",
-  "description": "Nest - modern, fast, powerful node.js web framework (@schemas)",
+  "name": "@cleardu/common",
+  "version": "1.0.0",
+  "description": "Nest - modern, fast, powerful node.js web framework (@common)",
   "author": "Kamil Mysliwiec",
   "license": "MIT",
   "homepage": "https://nestjs.com",
@@ -12,7 +12,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/nestjs/nest.git",
-    "directory": "packages/schemas"
+    "directory": "packages/common"
   },
   "publishConfig": {
     "access": "public"
@@ -26,6 +26,8 @@
   },
   "peerDependencies": {
     "@cleardu/interfaces": "^1.0.0",
+    "@nestjs/common": "^10.0.0",
+    "@nestjs/websockets": "^10.0.0",
     "rxjs": "^7.1.0"
   }
 }

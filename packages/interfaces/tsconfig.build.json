@@ -3,12 +3,8 @@
   "compilerOptions": {
     "outDir": ".",
     "rootDir": ".",
-    "paths": {
-      "@nestjs/common": ["../common"],
-      "@nestjs/common/*": ["../common/*"],
-      "@nestjs/websockets": ["../websockets"],
-      "@nestjs/websockets/*": ["../websockets/*"]
-    }
+    "paths": {}
   },
-  "exclude": ["node_modules", "dist", "test/**/*", "*.spec.ts"]
+  "exclude": ["node_modules", "dist", "test/**/*", "*.spec.ts"],
+  "references": []
 }

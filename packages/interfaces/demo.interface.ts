@@ -1,4 +1,4 @@
-export interface IBreaks {
+export interface IDemo {
   id?: number;
   name: string;
   description: string;
