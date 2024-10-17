@@ -14,6 +14,14 @@ export interface DBConnection extends ConnectionOptions {
   migration?: {};
 }
 
+export interface DBConnection extends ConnectionOptions {
+  host: string;
+  port: number;
+  username: string;
+  password: string;
+  database: string;
+}
+
 export interface IConfig {
   connection: DBConnection;
   replication?: ReplicationOptions | false;
