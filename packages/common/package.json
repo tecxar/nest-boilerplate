@@ -19,7 +19,9 @@
   },
   "dependencies": {
     "tslib": "2.7.0",
-    "ws": "8.18.0"
+    "ws": "8.18.0",
+    "umzug": "^3.7.0",
+    "@nestjs/common": "^10.0.0"
   },
   "devDependencies": {
     "@cleardu/interfaces": "^1.0.0"
