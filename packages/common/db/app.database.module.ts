@@ -58,9 +58,9 @@ export class DatabaseModule {
 	): Promise<DynamicModule>  {
     const { key = "", isGlobal = false, models, config } = options;
 
-    return new Promise((resolve)=> {
+    return new Promise(async (resolve)=> {
 
-      		const asyncOptions = this.createAsyncOptionsProvider(options);
+      		const asyncOptions = await this.createAsyncOptionsProvider(options);
   
           resolve( {
             module: DatabaseModule,
