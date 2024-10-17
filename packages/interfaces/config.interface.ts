@@ -1,12 +1,8 @@
-import { Dialect } from 'sequelize';
+import { ConnectionOptions, ReplicationOptions } from 'sequelize/types';
 
 export interface IConfig {
-  DB_DIALECT: Dialect;
-  DB_HOST: string;
-  DB_PORT: number;
-  DB_USER: string;
-  DB_PASSWORD: string;
-  DB_NAME: string;
+  connection : ConnectionOptions,
+  replication?: ReplicationOptions | false;
 }
 
 export interface IMigrationConfig {

@@ -1,54 +1,103 @@
 import { IConfig } from '@cleardu/interfaces';
-import { DynamicModule, Module } from '@nestjs/common';
+import {
+	type DynamicModule,
+	Module,
+  type Provider,
+} from "@nestjs/common";
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ModelCtor } from 'sequelize-typescript';
+import { getClientToken } from './db.utils';
 
-interface DatabaseModuleOptions {
+interface DatabaseRgisterOptions{
+	isGlobal?: boolean;
+	key?: string;
   models: string[] | ModelCtor[];
   config: IConfig;
 }
 
-@Module({
-  imports: [],
-  exports: [SequelizeModule],
-})
+interface DatabasRegisterAsyncOptions extends DatabaseRgisterOptions{
+  useFactory?: (...args: any[]) => Promise<DatabaseRgisterOptions> | DatabaseRgisterOptions;
+	inject?: any[];
+	imports?: any[];
+}
+
+
+
+@Module({})
 export class DatabaseModule {
-  static register({ models, config }: DatabaseModuleOptions): DynamicModule {
+ static forRoot(
+		options: DatabaseRgisterOptions,
+	): DynamicModule {
+    const { key = "", isGlobal = false, models, config } = options;
+    const providerToken = getClientToken(key);
+
+    const ClientProvider: Provider = {
+			provide: providerToken,
+		};
+
     return {
       module: DatabaseModule,
+      providers: [ClientProvider],
       imports: [
-        SequelizeModule.forRootAsync({
-          useFactory: () => ({
-            dialect: config.DB_DIALECT ?? 'mysql',
+        SequelizeModule.forRoot({
+            ...config.connection,
             synchronize: true,
             autoLoadModels: true,
             models,
-            logging: (msg: string) => {
-              // console.log(msg); // Customize logging as needed
-            },
-            replication: {
-              read: [
-                {
-                  host: config.DB_HOST,
-                  port: config.DB_PORT ?? 3306,
-                  username: config.DB_USER ?? '',
-                  password: config.DB_PASSWORD ?? '',
-                  database: config.DB_NAME ?? '',
-                },
-              ],
-              write: {
-                host: config.DB_HOST,
-                port: config.DB_PORT ?? 3306,
-                username: config.DB_USER ?? '',
-                password: config.DB_PASSWORD ?? '',
-                database: config.DB_NAME ?? '',
-              },
-            },
-          }),
-          inject: [],
-        }),
+            replication: config.replication
+          
+        })  ,
       ],
       exports: [DatabaseModule, SequelizeModule],
+      global: isGlobal
     };
   }
+
+  static forRootAsync(
+		options: DatabasRegisterAsyncOptions,
+	): Promise<DynamicModule>  {
+    const { key = "", isGlobal = false, models, config } = options;
+
+    return new Promise((resolve)=> {
+
+      		const asyncOptions = this.createAsyncOptionsProvider(options);
+  
+          resolve( {
+            module: DatabaseModule,
+            providers: [asyncOptions, ...options.imports],
+            imports: [
+              SequelizeModule.forRoot({
+                  ...config.connection,
+                  synchronize: true,
+                  autoLoadModels: true,
+                  models,
+                  replication: config.replication
+                
+              })
+            ],
+            exports: [DatabaseModule, SequelizeModule],
+            global: isGlobal
+          })
+
+      
+    })
+  }
+
+  private static async createAsyncOptionsProvider<T>(options: DatabasRegisterAsyncOptions): Provider {
+    const { key = "" } = options;
+    const providerToken = getClientToken(key);
+    const ClientProvider: Provider = {
+			provide: providerToken,
+		};
+
+		return {
+			provide: ClientProvider,
+			useFactory: async (...args: any[]) => {
+				const config = await options.useFactory(...args);
+				return config;
+			},
+			inject: options.inject || [],
+			imports: options.imports || [],
+		};
+	}
 }
