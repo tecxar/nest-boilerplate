@@ -85,7 +85,7 @@
     "sequelize": "^6.28.2",
     "sequelize-typescript": "^2.1.5",
     "socket.io": "4.7.5",
-    "tslib": "2.7.0",
+    "tslib": "^2.8.0",
     "typescript": "^5.6.3",
     "uid": "2.0.2",
     "umzug": "^3.7.0",
