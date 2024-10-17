@@ -56,7 +56,7 @@ export class DatabaseModule {
   static forRootAsync(
 		options: DatabasRegisterAsyncOptions,
 	): Promise<DynamicModule>  {
-    const { key = "", isGlobal = false, models, config } = options;
+    const { key = "", isGlobal = false, models } = options;
 
     return new Promise(async (resolve)=> {
 
@@ -67,11 +67,11 @@ export class DatabaseModule {
             providers: [asyncOptions, ...options.imports],
             imports: [
               SequelizeModule.forRoot({
-                  ...config.connection,
+                  ...asyncOptions.connection,
                   synchronize: true,
                   autoLoadModels: true,
                   models,
-                  replication: config.replication
+                  replication: asyncOptions.replication
                 
               })
             ],
