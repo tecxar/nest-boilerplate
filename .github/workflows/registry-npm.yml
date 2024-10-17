@@ -1,31 +1,26 @@
-name: Publish npm package
+name: Publish to npm
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'   # Triggers on version tags (e.g., v1.0.0)
+  release:
+    types: 
+      - published
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
-          node-version: '20'  # Set Node.js version to 20
-          registry-url: 'https://registry.npmjs.org/'
+          node-version: '20'  # Specify your Node.js version
+          registry-url: 'https://registry.npmjs.org/'  # npm registry URL
 
-      - name: Install dependencies
-        run: npm install --legacy-peer-deps
 
-      - name: Run tests
-        run: npm test
-
-      - name: Publish to npm
-        run: npm publish --access public   # Ensure it's published as public
+      - name: Publish package
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}   # Store your npm token as a secret in GitHub
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  # Use GitHub Secrets for your npm token
+        run: npm publish --access public
