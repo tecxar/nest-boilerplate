@@ -1,69 +1,31 @@
-name: CI/CD for Node.js
+name: Publish npm package
 
 on:
   push:
-    branches:
-      - main  # Run the workflow when pushing to the 'main' branch
-  pull_request:
-    branches:
-      - main  # Run the workflow for pull requests to 'main'
+    tags:
+      - 'v*.*.*'   # Triggers on version tags (e.g., v1.0.0)
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js (use Node.js version 20)
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20
-          registry-url: 'https://registry.npmjs.org'
+          node-version: '20'  # Set Node.js version to 20
+          registry-url: 'https://registry.npmjs.org/'
 
-      # Step 3: Install dependencies using npm ci
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+      - name: Run tests
+        run: npm test
 
-    steps:
-      # Step 1: Checkout code
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      # Step 2: Set up Node.js (use Node.js version 20)
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          registry-url: 'https://registry.npmjs.org'
-
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: npm install --legacy-peer-deps
-
-      # Step 4: Create a release (only if a new release is created)
-      - name: Create release
-        id: release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.sha }}
-          release_name: Release ${{ github.sha }}
-          draft: false
-          prerelease: false
-
-      # Step 5: Publish the package to npm (only if a release is created)
       - name: Publish to npm
-        run: npm publish --provenance --access public
+        run: npm publish --access public   # Ensure it's published as public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        if: ${{ steps.release.outputs.release_created }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}   # Store your npm token as a secret in GitHub
