@@ -7,7 +7,6 @@ export const Services = {
   USER_SERVICE: 'USER_SERVICE',
   SETTLEMENTS_SERVICE: 'SETTLEMENTS_SERVICE',
   RULE_SERVICE: 'RULE_SERVICE',
-  
 };
 
 export const BrokerMessages = {
