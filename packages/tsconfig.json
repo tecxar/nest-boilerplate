@@ -11,7 +11,13 @@
       "path": "./common/tsconfig.build.json"
     },
     {
-      "path": "./aws/tsconfig.build.json"
+      "path": "./redis/tsconfig.build.json"
+    },
+    {
+      "path": "./rmq/tsconfig.build.json"
+    },
+    {
+      "path": "./database/tsconfig.build.json"
     }
   ]
 }

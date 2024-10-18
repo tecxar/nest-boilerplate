@@ -48,7 +48,7 @@ jobs:
       - checkout
       - run:
           name: Update NPM version
-          command: 'sudo npm install -g npm@^9'
+          command: 'sudo npm install -g npm@^9 --legacy-peer-deps'
       - *restore-cache
       - *install-deps
       - *save-cache

@@ -1,21 +1,29 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { RedisModule, RedisModuleOptions } from '@liaoliaots/nestjs-redis';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { RedisModuleDefinition } from './redis.module-definition';
 
 @Module({})
-export class RedisMQ {
-  static register(): DynamicModule {
+export class RedisMQ extends RedisModuleDefinition.ConfigurableModuleClass {
+  static forRootAsync(
+    options: typeof RedisModuleDefinition.ASYNC_OPTIONS_TYPE,
+  ): DynamicModule {
+    const module = super.forRootAsync(options);
+
     return {
-      module: RedisMQ,
+      ...module,
       imports: [
+        ...(options.imports || []),
         RedisModule.forRootAsync({
           inject: [ConfigService],
           imports: [ConfigModule],
-          useFactory(configService: ConfigService): RedisModuleOptions {
+          useFactory: async (...args) => {
+            const sequelizeOptions = await options.useFactory!(...args);
+
             return {
               readyLog: true,
               config: {
-                url: configService.get<string>('REDIS_URI') || '',
+                url: sequelizeOptions.redisUri || '',
                 showFriendlyErrorStack: true,
                 enableOfflineQueue: true,
                 maxRetriesPerRequest: null,
@@ -28,7 +36,8 @@ export class RedisMQ {
           },
         }),
       ],
-      exports: [RedisModule],
+      exports: [RedisMQ],
+      global: options.isGlobal,
     };
   }
 }

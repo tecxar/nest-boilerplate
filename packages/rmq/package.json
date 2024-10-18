@@ -1,7 +1,7 @@
 {
-  "name": "@cleardu/interfaces",
+  "name": "@cleardu/rmq",
   "version": "1.0.2",
-  "description": "Nest - modern, fast, powerful node.js web framework (@interfaces)",
+  "description": "Nest - modern, fast, powerful node.js web framework (@rmq)",
   "author": "Kamil Mysliwiec",
   "license": "MIT",
   "homepage": "https://nestjs.com",
@@ -12,7 +12,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/nestjs/nest.git",
-    "directory": "packages/interfaces"
+    "directory": "packages/rmq"
   },
   "publishConfig": {
     "access": "public"
@@ -21,9 +21,11 @@
     "tslib": "2.7.0",
     "ws": "8.18.0"
   },
+  "devDependencies": {
+    "@cleardu/interfaces": "^1.0.2"
+  },
   "peerDependencies": {
-    "@nestjs/common": "^10.0.0",
-    "@nestjs/websockets": "^10.0.0",
+    "@cleardu/interfaces": "^1.0.0",
     "rxjs": "^7.1.0"
   }
 }

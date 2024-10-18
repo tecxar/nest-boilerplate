@@ -1,7 +1,14 @@
 {
-  "lerna": "2.4.0",
+  "lerna": "2.11.0",
   "packages": [
     "packages/*"
   ],
-  "version": "10.4.4"
+  "version": "1.0.4",
+  "command": {
+    "version": {
+      "npmClientArgs": [
+        "--legacy-peer-deps"
+      ]
+    }
+  }
 }
