@@ -11,8 +11,16 @@
     "type": "opencollective",
     "url": "https://opencollective.com/nest"
   },
-  "license": "MIT",
-  "author": "Kamil Mysliwiec",
+
+  "keywords": [
+    "core",
+    "cleardu"
+  ],
+  "author": "cleardu",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc -b -v packages",
     "postbuild": "npm run move:node_modules",
