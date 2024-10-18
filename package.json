@@ -5,7 +5,7 @@
   "homepage": "https://nestjs.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nestjs/nest.git"
+    "url": "https://github.com/tecxar/cleardu-core"
   },
   "funding": {
     "type": "opencollective",
@@ -112,6 +112,8 @@
     "gulp-sourcemaps": "3.0.0",
     "gulp-typescript": "5.0.1",
     "gulp-watch": "5.0.1",
+    "lerna": "^2.11.0",
+    "lerna-changelog": "2.2.0",
     "prettier": "3.3.3",
     "sequelize": "^6.37.1",
     "sequelize-cli": "^6.3.0",
