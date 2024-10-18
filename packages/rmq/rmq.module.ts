@@ -9,8 +9,8 @@ interface RmqModuleOptions {
 }
 
 @Module({
-  providers: [RmqService],
-  exports: [RmqService],
+  providers: [],
+  exports: [],
 })
 export class RmqModule {
   // Static method to register the RMQ module with dynamic options
