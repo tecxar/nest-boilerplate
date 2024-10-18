@@ -3,10 +3,12 @@
   "packages": [
     "packages/*"
   ],
-  "version": "1.0.1",
+  "version": "1.0.2",
   "command": {
     "version": {
-      "npmClientArgs": [ "--legacy-peer-deps" ]
+      "npmClientArgs": [
+        "--legacy-peer-deps"
+      ]
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@cleardu/rmq",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Nest - modern, fast, powerful node.js web framework (@rmq)",
   "author": "Kamil Mysliwiec",
   "license": "MIT",
@@ -22,7 +22,7 @@
     "ws": "8.18.0"
   },
   "devDependencies": {
-    "@cleardu/interfaces": "^1.0.1"
+    "@cleardu/interfaces": "^1.0.2"
   },
   "peerDependencies": {
     "@cleardu/interfaces": "^1.0.0",
