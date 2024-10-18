@@ -1,33 +1,35 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { InjectAws } from 'aws-sdk-v3-nest';
 import {
-  S3ConfigOptDto,
-  signedUrlDto,
-  S3UploadDto,
-  listFilesDto,
-} from './s3.dto';
-import { ApiResponse } from './s3.interface';
-import {
-  S3Client,
-  PutObjectCommand,
   GetObjectCommand,
-  S3ServiceException,
   ListObjectsV2Command,
+  PutObjectCommand,
+  S3Client,
+  S3ServiceException,
 } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import { listFilesDto, S3UploadDto, signedUrlDto } from './s3.dto';
+import { ApiResponse } from './s3.interface';
 
 @Injectable()
 export class S3Service {
-  private s3Client: S3Client;
-  constructor(@Inject('S3_OPTIONS') private options: S3ConfigOptDto) {
-    this.s3Client = new S3Client({
-      region: this.options.region,
-      credentials: {
-        accessKeyId: this.options.accessKeyId,
-        secretAccessKey: this.options.secretAccessKey,
-      },
-    });
-  }
+  constructor(
+    @InjectAws(S3Client as unknown as new (...args: any[]) => S3Client)
+    private readonly s3Client: S3Client,
+  ) {}
 
+  /**
+   * To upload file on AWS S3
+   * @param { S3UploadDto }
+   */
+
+  /**
+   * To upload file on AWS S3
+   * @param { string } bucketName - Provide AWS S3 buckate name.
+   * @param { string } fileKey - Provide AWS S3 File Key
+   * @param { File } file - Provide buffer file which you want to upload.
+   * @return { ApiResponse }
+   */
   async uploadFile(request: S3UploadDto): Promise<ApiResponse> {
     try {
       const command = new PutObjectCommand({
@@ -61,13 +63,19 @@ export class S3Service {
     }
   }
 
-  async writeUrl(request: signedUrlDto): Promise<ApiResponse> {
+  /**
+   * To generate presigned URL ( PUT URL ) to upload a file
+   * @param { string } bucketName - Provide AWS S3 buckate name.
+   * @param { string } fileKey - Provide AWS S3 File Key
+   * @return { ApiResponse }
+   */
+  writeUrl(request: signedUrlDto): ApiResponse {
     try {
       const command = new PutObjectCommand({
         Bucket: request.bucketName,
         Key: request.fileKey,
       });
-      const signedUrl = await getSignedUrl(this.s3Client, command, {
+      const signedUrl = getSignedUrl(this.s3Client, command, {
         expiresIn: 3600,
       });
       return {
@@ -87,13 +95,19 @@ export class S3Service {
     }
   }
 
-  async readUrl(request: signedUrlDto): Promise<ApiResponse> {
+  /**
+   * To generate presigned URL ( GET URL ) to download a file
+   * @param { string } bucketName - Provide AWS S3 buckate name.
+   * @param { string } fileKey - Provide AWS S3 File Key
+   * @return { ApiResponse }
+   */
+  readUrl(request: signedUrlDto): ApiResponse {
     try {
       const command = new GetObjectCommand({
         Bucket: request.bucketName,
         Key: request.fileKey,
       });
-      const signedUrl = await getSignedUrl(this.s3Client, command, {
+      const signedUrl = getSignedUrl(this.s3Client, command, {
         expiresIn: 3600,
       });
       return {
@@ -113,6 +127,12 @@ export class S3Service {
     }
   }
 
+  /**
+   * Retrive Files From bucket
+   * @param { string } bucketName - Provide AWS S3 buckate name.
+   * @param { string } folderName - Provide AWS S3 folder name or prefix
+   * @return { ApiResponse }
+   */
   async getFiles(request: listFilesDto): Promise<ApiResponse> {
     try {
       const params = {

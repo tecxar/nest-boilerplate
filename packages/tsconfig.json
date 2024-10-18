@@ -18,6 +18,9 @@
     },
     {
       "path": "./database/tsconfig.build.json"
+    },
+    {
+      "path": "./aws/tsconfig.build.json"
     }
   ]
 }

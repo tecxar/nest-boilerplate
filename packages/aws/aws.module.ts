@@ -1,20 +1,39 @@
-import { Module, DynamicModule } from '@nestjs/common';
+import { DynamicModule, Module } from '@nestjs/common';
 import { S3Service } from './s3/s3.service';
-import { S3ConfigOptDto } from './s3/s3.dto';
+import { AwsSdkModule } from 'aws-sdk-v3-nest';
+import { S3Client, S3ClientConfig } from '@aws-sdk/client-s3';
+@Module({
+  providers: [S3Service],
+  exports: [S3Service],
+})
 
-@Module({})
+/**
+ * To connect AWS S3 services
+ * @typedef { Object } S3RegistrationOptions
+ * @property { string } region - The AWS S3 region.
+ * @typedef { Object } credentials
+ * @property { string } accessKeyId - The AWS S3 Access Key Id.
+ * @property {string} secretAccessKey - The AWS S3 Secret Access Key.
+ */
 export class AwsModule {
-  static register(options: S3ConfigOptDto): DynamicModule {
+  static register(option: S3ClientConfig): DynamicModule {
     return {
       module: AwsModule,
-      providers: [
-        {
-          provide: 'S3_OPTIONS',
-          useValue: options,
-        },
-        S3Service,
+      imports: [
+        AwsSdkModule.registerAsync({
+          clientType: S3Client as unknown as new (...args: any[]) => S3Client,
+          useFactory: async () => {
+            const s3 = new S3Client(option);
+            try {
+              console.log('Connected to S3');
+            } catch (e) {
+              console.log('Unable to connect to S3', e);
+            }
+            return s3;
+          },
+        }),
       ],
-      exports: [S3Service],
+      exports: [AwsSdkModule],
     };
   }
 }

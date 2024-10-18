@@ -19,8 +19,9 @@
   },
   "dependencies": {
     "tslib": "^2.8.0",
-    "@aws-sdk/client-s3": "^3.670.0",
-    "@aws-sdk/s3-request-presigner": "^3.670.0"
+    "@aws-sdk/client-s3": "^3.674.0",
+    "@aws-sdk/s3-request-presigner": "^3.674.0",
+    "aws-sdk-v3-nest": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.7.5",
