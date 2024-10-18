@@ -1,6 +1,6 @@
 {
   "name": "@cleardu/common",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Nest - modern, fast, powerful node.js web framework (@common)",
   "author": "Kamil Mysliwiec",
   "license": "MIT",
