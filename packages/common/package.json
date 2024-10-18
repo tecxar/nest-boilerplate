@@ -32,5 +32,5 @@
     "@nestjs/websockets": "^10.0.0",
     "rxjs": "^7.1.0"
   },
-  "gitHead": "b932682618f5faa0d863d85dfd28f28ee430421c"
+  "gitHead": "63827d1bec73921c29fed4569cf46ec01eca951c"
 }
