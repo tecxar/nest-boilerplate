@@ -1,4 +1,4 @@
-export interface S3ConfigOpt {
+export interface S3RegistrationOptions {
   region: string;
   credentials: {
     accessKeyId: string;
