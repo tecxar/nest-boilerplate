@@ -1,6 +1,6 @@
 {
   "name": "@cleardu/common",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "description": "Nest - modern, fast, powerful node.js web framework (@common)",
   "homepage": "https://nestjs.com",
   "funding": {
@@ -27,7 +27,7 @@
     "ws": "8.18.0"
   },
   "devDependencies": {
-    "@cleardu/interfaces": "^1.0.9"
+    "@cleardu/interfaces": "^1.0.11"
   },
   "peerDependencies": {
     "@cleardu/interfaces": "^1.0.0",
