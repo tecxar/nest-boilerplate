@@ -19,13 +19,20 @@ jobs:
           node-version: '20'  # Specify your Node.js version
           registry-url: 'https://registry.npmjs.org/'  # npm registry URL
       
-      - name: install npm 
+      - name: Install npm dependencies
         run: npm install --legacy-peer-deps
       
-      - name: npm build 
-        run: npm run build
+      - name: Build packages
+        run: npm run build  # Make sure your build script handles all packages if necessary
 
-      - name: Publish package
+      - name: Publish packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  # Use GitHub Secrets for your npm token
-        run: npm publish --access public
+        run: |
+          # Publish each package sequentially
+          for package in packages/interfaces packages/schemas packages/common packages/redis packages/rmq packages/database packages/aws; do
+            echo "Publishing $package..."
+            cd $package
+            npm publish --access public
+            cd -  # Go back to the root directory
+          done
