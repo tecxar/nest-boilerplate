@@ -2,6 +2,7 @@ import { DynamicModule, Module } from '@nestjs/common';
 import { S3Service } from './s3/s3.service';
 import { AwsSdkModule } from 'aws-sdk-v3-nest';
 import { S3Client, S3ClientConfig } from '@aws-sdk/client-s3';
+import { S3ConfigOpt } from './s3/s3.dto';
 @Module({
   providers: [S3Service],
   exports: [S3Service],
@@ -16,7 +17,7 @@ import { S3Client, S3ClientConfig } from '@aws-sdk/client-s3';
  * @property {string} secretAccessKey - The AWS S3 Secret Access Key.
  */
 export class AwsModule {
-  static register(option: S3ClientConfig): DynamicModule {
+  static register(option: S3ConfigOpt): DynamicModule {
     return {
       module: AwsModule,
       imports: [

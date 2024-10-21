@@ -1,3 +1,10 @@
+export interface S3ConfigOpt {
+  region: string;
+  credentials: {
+    accessKeyId: string;
+    secretAccessKey: string;
+  };
+}
 export interface S3UploadDto {
   bucketName: string;
   fileKey: string;
