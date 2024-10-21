@@ -30,7 +30,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  # Use GitHub Secrets for your npm token
         run: |
           # Publish each package sequentially
-          for package in packages/interfaces packages/schemas packages/common packages/redis packages/rmq packages/database packages/aws; do
+          for package in packages/core packages/redis packages/rmq packages/database packages/aws; do
             echo "Publishing $package..."
             cd $package
             npm publish --access public

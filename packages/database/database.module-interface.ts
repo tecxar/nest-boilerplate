@@ -1,5 +1,5 @@
 import { ModelCtor } from 'sequelize-typescript';
-import { IConfig } from '@cleardu/interfaces';
+import { IConfig } from '@cleardu/core/interfaces';
 
 export interface DatabaseModuleOptions {
   isGlobal?: boolean;

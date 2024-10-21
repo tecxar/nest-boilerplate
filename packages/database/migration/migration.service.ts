@@ -1,4 +1,4 @@
-import { IMigrationConfig } from '@cleardu/interfaces';
+import { IMigrationConfig } from '@cleardu/core/interfaces';
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { Sequelize } from 'sequelize-typescript';
 import { MigrationMeta, SequelizeStorage, Umzug } from 'umzug';

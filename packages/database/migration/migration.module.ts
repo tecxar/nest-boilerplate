@@ -1,4 +1,4 @@
-import { IMigrationConfig } from '@cleardu/interfaces';
+import { IMigrationConfig } from '@cleardu/core/interfaces';
 import { DynamicModule, Module } from '@nestjs/common';
 import { Sequelize } from 'sequelize-typescript';
 import { MigrationConfigService } from './migration.service';

@@ -4,14 +4,14 @@
     "outDir": ".",
     "rootDir": ".",
     "paths": {
-      "@cleardu/interfaces": ["../interfaces"],
-      "@cleardu/interfaces/*": ["../interfaces/*"]
+      "@cleardu/core": ["../core"],
+      "@cleardu/core/*": ["../core/*"]
     }
   },
   "exclude": ["node_modules", "dist", "test/**/*", "*.spec.ts"],
   "references": [
     {
-      "path": "../interfaces/tsconfig.build.json"
+      "path": "../core/tsconfig.build.json"
     }
   ]
 }

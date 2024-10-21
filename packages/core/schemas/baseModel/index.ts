@@ -1,5 +1,4 @@
 import { Optional, Sequelize } from 'sequelize';
-import { DatabaseObject } from '@cleardu/interfaces';
 
 import {
   Column,
@@ -11,6 +10,7 @@ import {
   DataType,
   ForeignKey,
 } from 'sequelize-typescript';
+import { DatabaseObject } from '../../interfaces';
 
 export type DatabaseObjectCreationAttribute = Optional<DatabaseObject, 'id'>;
 
