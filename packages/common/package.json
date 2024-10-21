@@ -1,6 +1,6 @@
 {
   "name": "@cleardu/common",
-  "version": "1.0.4",
+  "version": "1.0.8",
   "description": "Nest - modern, fast, powerful node.js web framework (@common)",
   "author": "Kamil Mysliwiec",
   "license": "MIT",
@@ -32,5 +32,5 @@
     "@nestjs/websockets": "^10.0.0",
     "rxjs": "^7.1.0"
   },
-  "gitHead": "1dfac166c4fb2c4c0b73821bffa2ab327ffa6d18"
+  "gitHead": "63827d1bec73921c29fed4569cf46ec01eca951c"
 }

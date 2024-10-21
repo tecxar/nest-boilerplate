@@ -18,7 +18,12 @@ jobs:
         with:
           node-version: '20'  # Specify your Node.js version
           registry-url: 'https://registry.npmjs.org/'  # npm registry URL
-
+      
+      - name: install npm 
+        run: npm install --legacy-peer-deps
+      
+      - name: npm build 
+        run: npm run build
 
       - name: Publish package
         env:
