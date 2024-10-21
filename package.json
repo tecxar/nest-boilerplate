@@ -1,6 +1,6 @@
 {
   "name": "@cleardu/core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Modern, fast, powerful node.js web framework",
   "homepage": "https://nestjs.com",
   "repository": {

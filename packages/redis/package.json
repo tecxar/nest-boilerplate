@@ -2,8 +2,6 @@
   "name": "@cleardu/redis",
   "version": "1.0.2",
   "description": "Nest - modern, fast, powerful node.js web framework (@redis)",
-  "author": "Kamil Mysliwiec",
-  "license": "MIT",
   "homepage": "https://nestjs.com",
   "funding": {
     "type": "opencollective",
@@ -14,6 +12,11 @@
     "url": "https://github.com/nestjs/nest.git",
     "directory": "packages/redis"
   },
+  "keywords": [
+    "redis"
+  ],
+  "author": "cleardu",
+  "license": "ISC",
   "publishConfig": {
     "access": "public"
   },

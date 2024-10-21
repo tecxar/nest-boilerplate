@@ -2,8 +2,6 @@
   "name": "@cleardu/interfaces",
   "version": "1.0.2",
   "description": "Nest - modern, fast, powerful node.js web framework (@interfaces)",
-  "author": "Kamil Mysliwiec",
-  "license": "MIT",
   "homepage": "https://nestjs.com",
   "funding": {
     "type": "opencollective",
@@ -14,6 +12,11 @@
     "url": "https://github.com/nestjs/nest.git",
     "directory": "packages/interfaces"
   },
+  "keywords": [
+    "interfaces"
+  ],
+  "author": "cleardu",
+  "license": "ISC",
   "publishConfig": {
     "access": "public"
   },
