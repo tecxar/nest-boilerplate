@@ -17,10 +17,9 @@ export class RedisMQ extends RedisModuleDefinition.ConfigurableModuleClass {
         RedisModule.forRootAsync({
           inject: [ConfigService],
           imports: [ConfigModule],
-          useFactory:async(...args)=> {
-
+          useFactory: async (...args) => {
             const sequelizeOptions = await options.useFactory!(...args);
-            
+
             return {
               readyLog: true,
               config: {

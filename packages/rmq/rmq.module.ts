@@ -5,7 +5,7 @@ import { RmqService } from './rmq.service';
 // Define the options for the RMQ module
 interface RmqModuleOptions {
   name: string;
-  rmqUri:string;
+  rmqUri: string;
 }
 
 @Module({
@@ -14,7 +14,7 @@ interface RmqModuleOptions {
 })
 export class RmqModule {
   // Static method to register the RMQ module with dynamic options
-  static register({ name,rmqUri }: RmqModuleOptions): DynamicModule {
+  static register({ name, rmqUri }: RmqModuleOptions): DynamicModule {
     return {
       module: RmqModule,
       imports: [

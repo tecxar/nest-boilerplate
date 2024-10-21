@@ -59,17 +59,21 @@
     ]
   },
   "dependencies": {
-    "@nestjs/common": "^10.0.0",
+    "@aws-sdk/client-s3": "^3.674.0",
+    "@aws-sdk/s3-request-presigner": "^3.670.0",
+    "@nestjs/common": "^10.4.5",
     "@nestjs/config": "^3.1.1",
     "@nuxtjs/opencollective": "0.3.2",
+    "aws-sdk-v3-nest": "^1.0.0",
     "cli-color": "2.0.4",
-    "husky": "^9.1.6",
-    "typescript": "^5.6.3",
     "cookie-parser": "^1.4.6",
+    "husky": "^9.1.6",
     "ioredis": "^5.3.2",
-    "umzug": "^3.7.0",
+    "rxjs": "^7.8.1",
     "sequelize": "^6.28.2",
-    "sequelize-typescript": "^2.1.5"
+    "sequelize-typescript": "^2.1.5",
+    "typescript": "^5.6.3",
+    "umzug": "^3.7.0"
   },
   "devDependencies": {
     "@commitlint/cli": "19.5.0",

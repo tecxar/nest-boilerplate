@@ -1,6 +1,5 @@
-
 export interface RedisModuleOptions {
-	isGlobal?: boolean;
-	key?: string;
-	redisUri:string
+  isGlobal?: boolean;
+  key?: string;
+  redisUri: string;
 }

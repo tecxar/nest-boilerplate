@@ -1,3 +1,3 @@
-export * from "./database.module"
-export * from "./database.module-definition"
-export * from "./database.module-interface"
+export * from './database.module';
+export * from './database.module-definition';
+export * from './database.module-interface';
