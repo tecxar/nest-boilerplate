@@ -1,25 +1,22 @@
 // import { PermissionDto } from '@/dtos/permissions.dto';
 import {
   AllowNull,
-  BelongsTo,
   Column,
   DataType,
   Default,
   ForeignKey,
-  Model,
   Table
 } from 'sequelize-typescript';
-import { IPermission } from '../../interfaces/permissions';
-import Modules from '../modules';
 import { ActInactiveEnumType } from '../../constants';
+import { IPermission } from '../../interfaces/permissions';
+import IdlModel from '../idModel';
 
 
 @Table({ tableName: 'permissions' })
-export default class Permission extends Model<IPermission> implements IPermission {
+export default class Permission extends IdlModel<IPermission> implements IPermission {
   @AllowNull(true)
   @Column({ type: DataType.INTEGER.UNSIGNED })
   public moduleId: number;
-
 
   @Column({ type: DataType.STRING })
   public title: string;
@@ -33,7 +30,7 @@ export default class Permission extends Model<IPermission> implements IPermissio
   @Column({ type: DataType.TEXT })
   public description: string;
 
-  @Column({ type: DataType.ENUM(ActInactiveEnumType.active,ActInactiveEnumType.inactive) })
+  @Column({ type: DataType.ENUM(ActInactiveEnumType.active, ActInactiveEnumType.inactive) })
   public status: ActInactiveEnumType;
 
   @Column({ type: DataType.BOOLEAN })

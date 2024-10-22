@@ -6,14 +6,15 @@ import {
   Default,
   ForeignKey,
   HasMany,
+  Model,
   Table
 } from 'sequelize-typescript';
-import { Model } from 'sequelize';
 import { IPages } from '../../interfaces/pages';
 import { ActInactiveEnumType } from '../../constants';
 import Permission from '../permissions';
 @Table({ tableName: 'pages' })
 export class Pages extends Model<IPages> implements IPages {
+
   @AllowNull(true)
   @Column({ type: DataType.INTEGER.UNSIGNED })
   public moduleId: number;

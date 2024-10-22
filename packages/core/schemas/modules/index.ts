@@ -1,15 +1,11 @@
-import { Model } from 'sequelize';
-import { AllowNull, AutoIncrement, Column, DataType, HasMany, PrimaryKey, Table } from 'sequelize-typescript';
+import { AllowNull, Column, DataType, HasMany, Table } from 'sequelize-typescript';
 import { IModule } from '../../interfaces/modules';
+import IdlModel from '../idModel';
+import Pages from '../pages';
 import Permission from '../permissions';
 
 @Table({ tableName: 'modules' })
-export default class Modules extends Model<IModule> implements IModule {
-
-  @AutoIncrement
-  @PrimaryKey
-  @Column({ type: DataType.INTEGER.UNSIGNED })
-  public id: number;
+export default class Modules extends IdlModel<IModule> implements IModule {
 
   @Column({ type: DataType.STRING })
   public title: string;
@@ -22,7 +18,10 @@ export default class Modules extends Model<IModule> implements IModule {
   icon: string;
 
   @HasMany(() => Permission, 'moduleId')
-  declare modulePermissions: Permission;
+  declare permissions: Permission[];
+
+  @HasMany(() => Pages, 'moduleId')
+  public pages: Pages[];
 
   @AllowNull(true)
   @Column({ type: DataType.STRING })
