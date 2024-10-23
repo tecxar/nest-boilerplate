@@ -1,24 +1,23 @@
 import {
   AllowNull,
-  BelongsTo,
   Column,
   DataType,
   Default,
   ForeignKey,
   HasMany,
-  Model,
   Table
 } from 'sequelize-typescript';
-import { IPages } from '../../interfaces/pages';
 import { ActInactiveEnumType } from '../../constants';
+import { IPages } from '../../interfaces/pages';
+import IdlModel from '../idModel';
 import Permission from '../permissions';
 @Table({ tableName: 'pages' })
-export class Pages extends Model<IPages> implements IPages {
+export class Pages extends IdlModel<IPages> implements IPages {
 
   @AllowNull(true)
   @Column({ type: DataType.INTEGER.UNSIGNED })
   public moduleId: number;
- 
+
 
   @Column({ type: DataType.STRING })
   public title: string;
