@@ -112,3 +112,9 @@ export enum ActInactiveEnumType {
   active = 'active',
   inactive = 'inactive',
 }
+
+export enum UserTypeEnum {
+  internal = 'internal',
+  agency = 'agency',
+  vendor='vendor'
+}
