@@ -1,4 +1,4 @@
-import { Optional, Sequelize } from 'sequelize';
+import { Optional, Sequelize, UUIDV1 } from 'sequelize';
 
 import {
   Column,
@@ -23,6 +23,9 @@ export default class BaseModel<t>
   @PrimaryKey
   @Column({ type: DataType.INTEGER.UNSIGNED })
   public id: number;
+  
+  @Column({ type: DataType.UUID,defaultValue:UUIDV1})
+  public uuId: string
 
   @Column({ type: DataType.INTEGER.UNSIGNED })
   public createdBy: number;
@@ -37,4 +40,5 @@ export default class BaseModel<t>
   @Default(Sequelize.literal('CURRENT_TIMESTAMP'))
   @Column(DataType.DATE)
   public updatedAt: Date;
+
 }
