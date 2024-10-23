@@ -69,13 +69,13 @@ export class S3Service {
    * @param { string } fileKey - Provide AWS S3 File Key
    * @return { ApiResponse }
    */
-  writeUrl(request: signedUrlDto): ApiResponse {
+  async writeUrl(request: signedUrlDto): Promise<ApiResponse> {
     try {
       const command = new PutObjectCommand({
         Bucket: request.bucketName,
         Key: request.fileKey,
       });
-      const signedUrl = getSignedUrl(this.s3Client, command, {
+      const signedUrl = await getSignedUrl(this.s3Client, command, {
         expiresIn: 3600,
       });
       return {
@@ -101,13 +101,13 @@ export class S3Service {
    * @param { string } fileKey - Provide AWS S3 File Key
    * @return { ApiResponse }
    */
-  readUrl(request: signedUrlDto): ApiResponse {
+  async readUrl(request: signedUrlDto): Promise<ApiResponse> {
     try {
       const command = new GetObjectCommand({
         Bucket: request.bucketName,
         Key: request.fileKey,
       });
-      const signedUrl = getSignedUrl(this.s3Client, command, {
+      const signedUrl = await getSignedUrl(this.s3Client, command, {
         expiresIn: 3600,
       });
       return {
