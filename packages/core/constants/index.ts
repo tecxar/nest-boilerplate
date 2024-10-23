@@ -107,3 +107,8 @@ export const BrokerMessages = {
     createPayments: 'create-payments',
   },
 };
+
+export enum ActInactiveEnumType {
+  active = 'active',
+  inactive = 'inactive',
+}

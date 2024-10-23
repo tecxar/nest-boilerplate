@@ -1,4 +1,4 @@
-import { Optional, Sequelize } from 'sequelize';
+import { Optional, Sequelize, UUIDV1 } from 'sequelize';
 
 import {
   Column,
@@ -8,8 +8,8 @@ import {
   AutoIncrement,
   Default,
   DataType,
-  ForeignKey,
 } from 'sequelize-typescript';
+import { nanoid } from 'nanoid';
 import { DatabaseObject } from '../../interfaces';
 
 export type DatabaseObjectCreationAttribute = Optional<DatabaseObject, 'id'>;
@@ -23,6 +23,12 @@ export default class BaseModel<t>
   @PrimaryKey
   @Column({ type: DataType.INTEGER.UNSIGNED })
   public id: number;
+
+  @Column({
+    type: DataType.STRING(32),
+    defaultValue: () => nanoid(),
+  })
+  uid: string;
 
   @Column({ type: DataType.INTEGER.UNSIGNED })
   public createdBy: number;

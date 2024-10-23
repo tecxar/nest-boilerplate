@@ -9,7 +9,7 @@ interface RmqModuleOptions {
 }
 
 @Module({
-  providers: [],
+  providers: [RmqService],
   exports: [],
 })
 export class RmqModule {
@@ -35,7 +35,7 @@ export class RmqModule {
           },
         ]),
       ],
-      exports: [ClientsModule],
+      exports: [ClientsModule, RmqModule],
     };
   }
 }
