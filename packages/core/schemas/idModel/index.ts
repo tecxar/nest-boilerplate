@@ -8,7 +8,7 @@ import {
   Table
 } from 'sequelize-typescript';
 
-
+@Table({ createdAt:false,updatedAt:false })
 export default class IdlModel<t>
   extends Model {
   @AutoIncrement
