@@ -1,6 +1,6 @@
 {
   "name": "@cleardu/aws",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "Nest - modern, fast, powerful node.js web framework (@aws)",
   "author": "Kamil Mysliwiec",
   "license": "MIT",
