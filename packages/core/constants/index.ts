@@ -118,3 +118,8 @@ export enum UserTypeEnum {
   agency = 'agency',
   vendor='vendor'
 }
+
+export enum CampaignTypeEnum {
+  Predictive = 'Predictive',
+  Progressive = 'Progressive',
+}

@@ -3,17 +3,6 @@ export interface IRole {
   name: string;
   description: string;
   slug: string;
+  parentId?: number;
   isActive: boolean;
-}
-
-export interface CreateRoleDto {
-  id?: number;
-  name: string;
-  description: string;
-  isActive: boolean;
-}
-
-export interface UpdateRoleDto {
-  name?: string;
-  description?: string;
 }

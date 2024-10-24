@@ -5,7 +5,7 @@ import BaseModel from '../baseModel';
 @Table({ tableName: 'dialers' })
 export default class Dialers extends BaseModel<IDialers> implements IDialers {
   @AllowNull(false)
-  @Column(DataType.STRING(30))
+  @Column(DataType.STRING(100))
   public name: string;
 
   @Column(DataType.BOOLEAN)
