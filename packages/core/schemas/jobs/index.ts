@@ -1,7 +1,6 @@
-import { Optional, Sequelize } from 'sequelize';
 import { Column, Table, DataType } from 'sequelize-typescript';
 import BaseModel from '../baseModel';
-import { IJobProgress } from '../../interfaces/jobProgress';
+import { IJobProgress } from '../../interfaces/jobs';
 
 @Table({
   tableName: 'jobs',
