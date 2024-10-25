@@ -1,6 +1,6 @@
 {
   "name": "@cleardu/rmq",
-  "version": "1.0.18",
+  "version": "1.0.21",
   "description": "Nest - modern, fast, powerful node.js web framework (@rmq)",
   "homepage": "https://nestjs.com",
   "funding": {

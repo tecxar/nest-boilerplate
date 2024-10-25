@@ -8,6 +8,8 @@ import {
   PrimaryKey,
   Table
 } from 'sequelize-typescript';
+import { nanoid } from 'nanoid';
+
 
 @Table({ createdAt: false, updatedAt: false })
 export default class IdlModel<t>
@@ -17,6 +19,9 @@ export default class IdlModel<t>
   @Column({ type: DataType.INTEGER.UNSIGNED })
   public id: number;
 
-  @Column({ type: DataType.UUID, defaultValue: UUIDV1 })
-  public uuId: string
+  @Column({
+    type: DataType.STRING(32),
+    defaultValue: () => nanoid(),
+  })
+  uid: string;
 }

@@ -112,3 +112,19 @@ export enum ActInactiveEnumType {
   active = 'active',
   inactive = 'inactive',
 }
+
+export enum UserTypeEnum {
+  internal = 'internal',
+  agency = 'agency',
+  vendor = 'vendor',
+}
+
+export enum CampaignTypeEnum {
+  Predictive = 'Predictive',
+  Progressive = 'Progressive',
+}
+
+export enum GenderTypeEnum {
+  male = 'male',
+  female = 'female',
+}
