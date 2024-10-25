@@ -14,7 +14,12 @@ import { DatabaseObject } from '../../interfaces';
 
 export type DatabaseObjectCreationAttribute = Optional<DatabaseObject, 'id'>;
 
-@Table({ timestamps: true, createdAt: 'createdAt', updatedAt: 'updatedAt' })
+@Table({
+  timestamps: true,
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  paranoid: true,
+})
 export default class BaseModel<t>
   extends Model
   implements DatabaseObjectCreationAttribute
@@ -43,4 +48,7 @@ export default class BaseModel<t>
   @Default(Sequelize.literal('CURRENT_TIMESTAMP'))
   @Column(DataType.DATE)
   public updatedAt: Date;
+
+  @Column(DataType.DATE)
+  public deletedAt: Date;
 }
