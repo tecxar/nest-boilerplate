@@ -1,24 +1,34 @@
 import { Sequelize } from 'sequelize';
-import { AutoIncrement, Column, DataType, Default, HasOne, PrimaryKey, Table } from 'sequelize-typescript';
+import {
+  AutoIncrement,
+  Column,
+  DataType,
+  Default,
+  HasOne,
+  PrimaryKey,
+  Table,
+} from 'sequelize-typescript';
 import { IClientStates } from '../../interfaces/clientStates';
 import BaseModel from '../baseModel';
 import Clients from '../clients';
 
 @Table({ tableName: 'clientStates' })
-export default class ClientStates extends BaseModel<IClientStates> implements IClientStates {
-
+export default class ClientStates
+  extends BaseModel<IClientStates>
+  implements IClientStates
+{
   @AutoIncrement
   @PrimaryKey
   @Column({ type: DataType.INTEGER.UNSIGNED })
-  public id: number;
+  declare id: number;
 
   @Default(Sequelize.literal('CURRENT_TIMESTAMP'))
   @Column(DataType.DATE)
-  public createdAt: Date;
+  declare createdAt: Date;
 
   @Default(Sequelize.literal('CURRENT_TIMESTAMP'))
   @Column(DataType.DATE)
-  public updatedAt: Date;
+  declare updatedAt: Date;
 
   @Column(DataType.STRING(150))
   name: string;
@@ -30,5 +40,5 @@ export default class ClientStates extends BaseModel<IClientStates> implements IC
   clientId: number;
 
   @HasOne(() => Clients, 'clientId')
-  public city: Clients;
+  declare city: Clients;
 }

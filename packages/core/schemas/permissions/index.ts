@@ -1,27 +1,24 @@
 // import { PermissionDto } from '@/dtos/permissions.dto';
-import {
-  AllowNull,
-  Column,
-  DataType,
-  Table
-} from 'sequelize-typescript';
+import { AllowNull, Column, DataType, Table } from 'sequelize-typescript';
 import { ActInactiveEnumType } from '../../constants';
 import { IPermission } from '../../interfaces/permissions';
 import IdlModel from '../idModel';
 
-
 @Table({ tableName: 'permissions' })
-export default class Permission extends IdlModel<IPermission> implements IPermission {
+export default class Permission
+  extends IdlModel<IPermission>
+  implements IPermission
+{
   @AllowNull(true)
   @Column({ type: DataType.INTEGER.UNSIGNED })
-  public moduleId: number;
+  declare moduleId: number;
 
   @Column({ type: DataType.STRING })
-  public title: string;
+  declare title: string;
 
   @Column({ type: DataType.STRING })
-  public slug: string;
+  declare slug: string;
 
   @Column({ type: DataType.TEXT })
-  public description: string;
+  declare description: string;
 }
