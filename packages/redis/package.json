@@ -1,6 +1,6 @@
 {
   "name": "@cleardu/redis",
-  "version": "1.0.18",
+  "version": "1.0.20",
   "description": "Nest - modern, fast, powerful node.js web framework (@redis)",
   "homepage": "https://nestjs.com",
   "funding": {
