@@ -2,9 +2,11 @@ import { Column, DataType, Table } from 'sequelize-typescript';
 import { IRole } from '../../interfaces';
 import BaseModel from '../baseModel';
 
-@Table({ tableName: 'roles' })
+@Table({
+  tableName: 'roles',
+  paranoid: true,
+})
 export default class Roles extends BaseModel<IRole> implements IRole {
-
   @Column({ type: DataType.STRING, allowNull: false })
   name: string;
 
