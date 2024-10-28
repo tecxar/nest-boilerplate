@@ -1,8 +1,8 @@
 import { ConfigurableModuleBuilder } from '@nestjs/common';
-import { RedisModuleOptions } from './rmq.module-interface';
+import { RmqModuleOptions} from './rmq.module-interface';
 
 export const RmqModuleDefinition =
-  new ConfigurableModuleBuilder<RedisModuleOptions>()
+  new ConfigurableModuleBuilder<RmqModuleOptions>()
     .setExtras(
       {
         isGlobal: true,
