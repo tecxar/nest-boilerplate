@@ -16,3 +16,14 @@ export const responser = (
   }
   return returnObj;
 };
+
+export const isEmpty = (value: string | number | object): boolean => {
+  return (
+    value === null ||
+    (typeof value === 'string' && value.trim() === '') ||
+    typeof value === 'undefined' ||
+    (typeof value === 'object' &&
+      value !== null &&
+      Object.keys(value).length === 0)
+  );
+};
