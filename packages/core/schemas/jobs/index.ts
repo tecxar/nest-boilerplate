@@ -1,66 +1,66 @@
 import { Optional, Sequelize } from 'sequelize';
 import { Column, Table, DataType } from 'sequelize-typescript';
 import BaseModel from '../baseModel';
-import { IJobProgress } from '../../interfaces/jobProgress';
+import { IJob } from '../../interfaces/jobProgress';
 
 @Table({
   tableName: 'jobs',
 })
-export default class Jobs extends BaseModel<IJobProgress> {
+export default class Jobs extends BaseModel<IJob> {
   @Column({ type: DataType.STRING, allowNull: false })
-  public job_id: string;
+  public jobId: string;
 
   @Column({ type: DataType.STRING, allowNull: false })
-  public job_type: string;
+  public jobType: string;
 
   @Column({
     type: DataType.INTEGER.UNSIGNED,
     allowNull: false,
     defaultValue: 0,
   })
-  public client_id: number;
+  public clientId: number;
 
   @Column({
     type: DataType.INTEGER.UNSIGNED,
     allowNull: false,
     defaultValue: 0,
   })
-  public total_records: number;
+  public totalRecords: number;
 
   @Column({
     type: DataType.INTEGER.UNSIGNED,
     allowNull: false,
     defaultValue: 0,
   })
-  public correct_records: number;
+  public correctRecords: number;
 
   @Column({
     type: DataType.INTEGER.UNSIGNED,
     allowNull: false,
     defaultValue: 0,
   })
-  public incorrect_records: number;
+  public incorrectRecords: number;
 
   @Column({
     type: DataType.INTEGER.UNSIGNED,
     allowNull: false,
     defaultValue: 0,
   })
-  public inserted_count: number;
+  public insertedCount: number;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
     defaultValue: '',
   })
-  public last_inserted_record: string | null;
+  public lastInsertedIndex: string | null;
 
   @Column({
     type: DataType.INTEGER.UNSIGNED,
     allowNull: false,
     defaultValue: 0,
   })
-  public progress_percentage: number;
+  public progressPercentage: number;
 
   @Column({
     type: DataType.ENUM('waiting', 'pending', 'completed', 'failed'),
@@ -73,17 +73,24 @@ export default class Jobs extends BaseModel<IJobProgress> {
     type: DataType.STRING,
     allowNull: true,
   })
-  public error_msg: string | null;
+  public errorMsg: string | null;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  public error_file_key: string | null;
+  public errorFileKey: string | null;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  public file_key: string | null;
+  public fileKey: string | null;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: true,
+    defaultValue: false,
+  })
+  public isPaused?: boolean;
 }
