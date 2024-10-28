@@ -1,7 +1,7 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { S3Service } from './s3/s3.service';
 import { AwsSdkModule } from 'aws-sdk-v3-nest';
-import { S3Client, S3ClientConfig } from '@aws-sdk/client-s3';
+import { S3Client } from '@aws-sdk/client-s3';
 import { S3RegistrationOptions } from './s3/s3.dto';
 @Module({
   providers: [S3Service],
@@ -33,6 +33,16 @@ export class AwsModule {
             return s3;
           },
         }),
+      ],
+      providers: [
+        {
+          provide: 'S3_BUCKET_NAME',
+          useValue: option.bucketName,
+        },
+        {
+          provide: 'PRE_SIGNED_URL_EXP_TIME',
+          useValue: option?.expiryTime || 1800,
+        },
       ],
       exports: [AwsSdkModule],
     };

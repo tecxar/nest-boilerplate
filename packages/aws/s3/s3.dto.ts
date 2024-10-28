@@ -4,6 +4,8 @@ export interface S3RegistrationOptions {
     accessKeyId: string;
     secretAccessKey: string;
   };
+  bucketName: string;
+  expiryTime?: number;
 }
 export interface S3UploadDto {
   bucketName: string;
