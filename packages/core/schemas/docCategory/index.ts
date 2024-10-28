@@ -17,12 +17,12 @@ export default class DocCategory
   @AutoIncrement
   @PrimaryKey
   @Column({ type: DataType.INTEGER.UNSIGNED })
-  public id: number;
+  declare id: number;
 
   @AllowNull(false)
   @Column(DataType.STRING(30))
-  public name: string;
+  declare name: string;
 
   @Column(DataType.STRING(100))
-  public key: string;
+  declare key: string;
 }

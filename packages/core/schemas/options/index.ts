@@ -18,19 +18,19 @@ export default class optionsSchema
   @Column(
     DataType.ENUM('Contacted', 'Not contacted', 'Contacted - Others', 'Legal'),
   )
-  public category: string;
+  declare category: string;
 
   @AllowNull(false)
   @Column(DataType.STRING(30))
   @Index('idx_name')
-  public name: string;
+  declare name: string;
 
   @Column(DataType.STRING)
-  public isActive: boolean;
+  declare isActive: boolean;
 
   @Column(DataType.INTEGER.UNSIGNED)
-  public parentId: number;
+  declare parentId: number;
 
   @Column(DataType.ENUM('disposition', 'sub_disposition'))
-  public type: string;
+  declare type: string;
 }

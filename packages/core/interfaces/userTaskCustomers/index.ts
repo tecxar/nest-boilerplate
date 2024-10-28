@@ -4,7 +4,7 @@ export interface IUserTaskCustomers {
   key?: number;
   isAttended?: Boolean;
   isPending?: Boolean;
-  agentBatchId?: number;
+  agentTaskId?: number;
   customerId?: number;
   disposition?: string;
   subDisposition?: string;

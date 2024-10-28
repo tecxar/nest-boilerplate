@@ -8,13 +8,19 @@ import {
   AutoIncrement,
   Default,
   DataType,
+  Index,
 } from 'sequelize-typescript';
 import { nanoid } from 'nanoid';
 import { DatabaseObject } from '../../interfaces';
 
 export type DatabaseObjectCreationAttribute = Optional<DatabaseObject, 'id'>;
 
-@Table({ timestamps: true, createdAt: 'createdAt', updatedAt: 'updatedAt' })
+@Table({
+  timestamps: true,
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  paranoid: true,
+})
 export default class BaseModel<t>
   extends Model
   implements DatabaseObjectCreationAttribute
@@ -22,25 +28,29 @@ export default class BaseModel<t>
   @AutoIncrement
   @PrimaryKey
   @Column({ type: DataType.INTEGER.UNSIGNED })
-  public id: number;
+  declare id: number;
 
   @Column({
     type: DataType.STRING(32),
     defaultValue: () => nanoid(),
   })
+  @Index
   uid: string;
 
   @Column({ type: DataType.INTEGER.UNSIGNED })
-  public createdBy: number;
+  declare createdBy: number;
 
   @Default(Sequelize.literal('CURRENT_TIMESTAMP'))
   @Column(DataType.DATE)
-  public createdAt: Date;
+  declare createdAt: Date;
 
   @Column(DataType.INTEGER.UNSIGNED)
-  public updatedBy: number;
+  declare updatedBy: number;
 
   @Default(Sequelize.literal('CURRENT_TIMESTAMP'))
   @Column(DataType.DATE)
-  public updatedAt: Date;
+  declare updatedAt: Date;
+
+  @Column(DataType.DATE)
+  declare deletedAt: Date;
 }

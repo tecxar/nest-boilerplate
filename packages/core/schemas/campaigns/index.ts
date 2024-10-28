@@ -1,14 +1,23 @@
 import { ENUM } from 'sequelize';
-import { BelongsTo, Column, DataType, Default, ForeignKey, Table } from 'sequelize-typescript';
+import {
+  BelongsTo,
+  Column,
+  DataType,
+  Default,
+  ForeignKey,
+  Table,
+} from 'sequelize-typescript';
 import { CampaignTypeEnum } from '../../constants';
 import { Icampaigns } from '../../interfaces/campaigns';
 import BaseModel from '../baseModel';
 import Clients from '../clients';
 import Dialers from '../dialers';
 
-
 @Table({ tableName: 'campaigns' })
-export default class Campaigns extends BaseModel<Icampaigns> implements Icampaigns {
+export default class Campaigns
+  extends BaseModel<Icampaigns>
+  implements Icampaigns
+{
   @ForeignKey(() => Clients)
   @Column(DataType.INTEGER.UNSIGNED)
   clientId: number;
@@ -30,8 +39,10 @@ export default class Campaigns extends BaseModel<Icampaigns> implements Icampaig
   @Column({ type: DataType.BOOLEAN, defaultValue: false })
   isActive: boolean;
 
-  @Column({ type: ENUM(CampaignTypeEnum.Predictive, CampaignTypeEnum.Progressive) })
-  public campaignType: CampaignTypeEnum;
+  @Column({
+    type: ENUM(CampaignTypeEnum.Predictive, CampaignTypeEnum.Progressive),
+  })
+  declare campaignType: CampaignTypeEnum;
 
   @Default(0)
   @Column({ type: DataType.BOOLEAN, defaultValue: false })
@@ -39,5 +50,4 @@ export default class Campaigns extends BaseModel<Icampaigns> implements Icampaig
 
   @Column(DataType.DECIMAL(13, 2))
   maxRatio: number;
-
 }
