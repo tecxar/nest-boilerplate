@@ -37,6 +37,8 @@ export * from './campaigns';
 export * from './borrowersHistory';
 export * from './borrowersDispositions';
 export * from './borrowers';
+export * from './emailReports';
+
 
 
 

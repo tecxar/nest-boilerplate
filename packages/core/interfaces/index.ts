@@ -37,6 +37,8 @@ export * from './borrowersHistory';
 export * from './borrowers';
 export * from './borrowersDispositions';
 export * from './idObject'
+export * from './emailReports';
+
 
 
 
