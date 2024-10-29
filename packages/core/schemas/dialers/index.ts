@@ -6,9 +6,8 @@ import BaseModel from '../baseModel';
 export default class Dialers extends BaseModel<IDialers> implements IDialers {
   @AllowNull(false)
   @Column(DataType.STRING(100))
-  public name: string;
+  declare name: string;
 
   @Column(DataType.BOOLEAN)
-  public isActive: boolean;
-
+  declare isActive: boolean;
 }
