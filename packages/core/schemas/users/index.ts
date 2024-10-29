@@ -1,24 +1,23 @@
-import bcrypt from 'bcrypt';
 import { DataTypes } from 'sequelize';
+import * as bcrypt from 'bcrypt';
 import {
   AllowNull,
   BeforeCreate,
   BeforeUpdate,
+  BelongsTo,
   Column,
   DataType,
-  HasMany,
-  Index,
+  ForeignKey,
   Table,
 } from 'sequelize-typescript';
 import { UserTypeEnum } from '../../constants';
 import { IUser } from '../../interfaces/users';
 import BaseModel from '../baseModel';
-import UserTasks from '../userTasks';
+import Roles from '../role';
 
 @Table({
   tableName: 'users',
   timestamps: true,
-  paranoid: true,
 })
 export default class User extends BaseModel<IUser> implements IUser {
   @AllowNull(false)
@@ -30,22 +29,21 @@ export default class User extends BaseModel<IUser> implements IUser {
 
   @AllowNull(false)
   @Column(DataType.STRING(100))
-  declare userEmail: string;
+  userEmail: string;
 
   @AllowNull(false)
   @Column(DataTypes.TEXT)
-  declare password: string;
+  password: string;
 
   @AllowNull(false)
-  //   @ForeignKey(() => Roles)
+  @ForeignKey(() => Roles)
   @Column(DataType.INTEGER.UNSIGNED)
   roleId: number;
-  //   @BelongsTo(() => Roles)
-  //    @HasOne(() => Roles, 'id')
-  //   role: Roles;
+  @BelongsTo(() => Roles)
+  role: Roles;
 
   @AllowNull(true)
-  @Column(DataType.DATE)
+  @Column(DataType.DATEONLY)
   dob: Date;
 
   @AllowNull(true)
@@ -53,13 +51,12 @@ export default class User extends BaseModel<IUser> implements IUser {
   doj: Date;
 
   @Column(DataTypes.BOOLEAN)
-  declare isActive: boolean;
+  isActive: boolean;
 
   @Column(DataType.STRING(15))
   mobile: string;
 
   @AllowNull(true)
-  @Index('idx_target')
   @Column(DataType.INTEGER)
   target: number;
 
@@ -84,12 +81,36 @@ export default class User extends BaseModel<IUser> implements IUser {
   stateId: number;
 
   @AllowNull(true)
-  @Column(DataType.NUMBER)
+  @Column(DataType.INTEGER)
   pincode: number;
 
   @AllowNull(true)
-  @Column(DataType.ENUM)
+  @Column(DataType.ENUM(...Object.values(UserTypeEnum)))
   userType: UserTypeEnum;
+
+  @AllowNull(true)
+  @Column(DataType.INTEGER.UNSIGNED)
+  reportingRole: number;
+
+  @AllowNull(true)
+  @Column(DataType.INTEGER.UNSIGNED)
+  reportingTo: number;
+
+  @AllowNull(true)
+  @Column(DataType.INTEGER)
+  extensionNumber: number;
+
+  @AllowNull(true)
+  @Column(DataType.STRING(50))
+  dialerReferenceId: string;
+
+  @AllowNull(true)
+  @Column(DataType.STRING(50))
+  dialerUserUuid: string;
+
+  @AllowNull(true)
+  @Column(DataType.INTEGER.UNSIGNED)
+  dialerId?: number;
 
   @BeforeUpdate
   @BeforeCreate
@@ -106,6 +127,6 @@ export default class User extends BaseModel<IUser> implements IUser {
     });
   }
 
-  @HasMany(() => UserTasks, 'userId')
-  userTasks: UserTasks;
+  // @HasMany(() => UserTasks, 'userId')
+  // userTasks: UserTasks;
 }

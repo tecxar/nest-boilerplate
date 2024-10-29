@@ -115,8 +115,9 @@ export enum ActInactiveEnumType {
 
 export enum UserTypeEnum {
   internal = 'internal',
-  agency = 'agency',
-  vendor = 'vendor',
+  // agency = 'agency',
+  // vendor = 'vendor',
+  external = 'external',
 }
 
 export enum CampaignTypeEnum {
@@ -166,8 +167,8 @@ export const userModules = {
   Payments: 20,
   Communication: 21,
   AuditLog: 22,
-  LiveChat: 23
-}
+  LiveChat: 23,
+};
 
 export const dispoSubDispo = {
   dispositions: {

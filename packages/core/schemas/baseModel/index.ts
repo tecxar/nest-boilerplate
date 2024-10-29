@@ -9,6 +9,7 @@ import {
   Default,
   DataType,
   Index,
+  AllowNull,
 } from 'sequelize-typescript';
 import { nanoid } from 'nanoid';
 import { DatabaseObject } from '../../interfaces';
@@ -50,6 +51,7 @@ export default class BaseModel<t>
   @Column(DataType.DATE)
   declare updatedAt: Date;
 
+  @AllowNull(true)
   @Column(DataType.DATE)
   declare deletedAt: Date;
 }

@@ -1,12 +1,16 @@
 export const Services = {
   CDR_SERVICE: 'CDR_SERVICE',
   INTEGRATION_SERVICE: 'INTEGRATION_SERVICE',
+  USER_SERVICE: 'USER_SERVICE',
 };
 
 export const BrokerMessages = {
-  userMs: {
-    user: {
-      addUser: 'add_user',
+  USER: {
+    User: {
+      createUser: 'create-user',
+      findUser: 'get-user-details',
+      findAllUsers: 'get-all-user-list',
+      updateUser: 'update-user',
     },
   },
   crm: {
