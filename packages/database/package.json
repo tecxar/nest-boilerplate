@@ -1,6 +1,6 @@
 {
   "name": "@cleardu/database",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "description": "Nest - modern, fast, powerful node.js web framework (@database)",
   "homepage": "https://nestjs.com",
   "funding": {
