@@ -3,8 +3,10 @@ import { IBorrowersDispositions } from '../../interfaces/borrowersDispositions';
 import BaseModel from '../baseModel';
 
 @Table({ tableName: 'borrowers_dispostions' })
-export default class BorrowersDispositions extends BaseModel<IBorrowersDispositions> implements IBorrowersDispositions {
-
+export default class BorrowersDispositions
+  extends BaseModel<IBorrowersDispositions>
+  implements IBorrowersDispositions
+{
   @Column({ type: DataType.INTEGER, allowNull: false })
   public borrowerId: number;
 
@@ -37,6 +39,4 @@ export default class BorrowersDispositions extends BaseModel<IBorrowersDispositi
 
   @Column({ type: DataType.STRING(100), allowNull: true })
   public callRefNo: string;
-
-
 }

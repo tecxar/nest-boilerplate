@@ -1,88 +1,92 @@
+import { Optional, Sequelize } from 'sequelize';
 import { Column, Table, DataType } from 'sequelize-typescript';
 import BaseModel from '../baseModel';
-import { IJobProgress } from '../../interfaces/jobs';
+import { IJob } from '../../interfaces/jobs';
 
 @Table({
   tableName: 'jobs',
 })
-export default class Jobs extends BaseModel<IJobProgress> {
+export default class Jobs extends BaseModel<IJob> {
   @Column({ type: DataType.STRING, allowNull: false })
-  declare job_id: string;
-
-  @Column({ type: DataType.STRING, allowNull: false })
-  declare job_type: string;
+  public type: string;
 
   @Column({
     type: DataType.INTEGER.UNSIGNED,
     allowNull: false,
     defaultValue: 0,
   })
-  declare client_id: number;
+  public clientId: number;
 
   @Column({
-    type: DataType.INTEGER.UNSIGNED,
+    type: DataType.INTEGER,
     allowNull: false,
     defaultValue: 0,
   })
-  declare total_records: number;
+  public totalRecords: number;
 
   @Column({
-    type: DataType.INTEGER.UNSIGNED,
+    type: DataType.INTEGER,
     allowNull: false,
     defaultValue: 0,
   })
-  declare correct_records: number;
+  public correctRecords: number;
 
   @Column({
-    type: DataType.INTEGER.UNSIGNED,
+    type: DataType.INTEGER,
     allowNull: false,
     defaultValue: 0,
   })
-  declare incorrect_records: number;
+  public incorrectRecords: number;
 
   @Column({
-    type: DataType.INTEGER.UNSIGNED,
+    type: DataType.INTEGER,
     allowNull: false,
     defaultValue: 0,
   })
-  declare inserted_count: number;
+  public insertedCount: number;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.INTEGER,
     allowNull: true,
-    defaultValue: '',
+    defaultValue: 0,
   })
-  declare last_inserted_record: string | null;
+  public lastInsertedIndex: number;
 
   @Column({
-    type: DataType.INTEGER.UNSIGNED,
+    type: DataType.INTEGER,
     allowNull: false,
     defaultValue: 0,
   })
-  declare progress_percentage: number;
+  public progressPercentage: number;
 
   @Column({
-    type: DataType.ENUM('waiting', 'pending', 'completed', 'failed'),
+    type: DataType.ENUM(
+      'waiting',
+      'inprogress',
+      'pending',
+      'completed',
+      'failed',
+    ),
     allowNull: false,
     defaultValue: 'waiting',
   })
-  declare status: string;
+  public status: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT,
     allowNull: true,
   })
-  declare error_msg: string | null;
+  public errorMsg: string | null;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT,
     allowNull: true,
   })
-  declare error_file_key: string | null;
+  public errorFileKey: string | null;
 
   @Column({
-    type: DataType.STRING,
-    allowNull: true,
+    type: DataType.TEXT,
+    allowNull: false,
   })
-  declare file_key: string | null;
+  public fileKey: string;
 }

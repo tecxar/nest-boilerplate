@@ -3,8 +3,10 @@ import { ILoanHistory } from '../../interfaces/loanHistory';
 import BaseModel from '../baseModel';
 
 @Table({ tableName: 'loan_history' })
-export default class LoanHistory extends BaseModel<ILoanHistory> implements ILoanHistory {
-
+export default class LoanHistory
+  extends BaseModel<ILoanHistory>
+  implements ILoanHistory
+{
   @Column({ type: DataType.INTEGER, allowNull: true })
   public borrowerId: number;
 
@@ -160,6 +162,4 @@ export default class LoanHistory extends BaseModel<ILoanHistory> implements ILoa
 
   @Column({ type: DataType.STRING(50), allowNull: true })
   public groupId: string;
-
-
 }

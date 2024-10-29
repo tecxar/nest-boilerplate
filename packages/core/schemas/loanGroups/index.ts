@@ -3,7 +3,10 @@ import { ILoanGroups } from '../../interfaces/loanGroups';
 import BaseModel from '../baseModel';
 
 @Table({ tableName: 'loan_groups' })
-export default class LoanGroups extends BaseModel<ILoanGroups> implements ILoanGroups {
+export default class LoanGroups
+  extends BaseModel<ILoanGroups>
+  implements ILoanGroups
+{
   @Column({ type: DataType.INTEGER, allowNull: true })
   public id: number;
 
@@ -27,6 +30,4 @@ export default class LoanGroups extends BaseModel<ILoanGroups> implements ILoanG
 
   @Column({ type: DataType.INTEGER, allowNull: true })
   public loanCounts: number;
-
-
 }

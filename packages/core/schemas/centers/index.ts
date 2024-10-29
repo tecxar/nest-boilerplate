@@ -4,7 +4,6 @@ import BaseModel from '../baseModel';
 
 @Table({ tableName: 'centers' })
 export default class Centers extends BaseModel<ICenters> implements ICenters {
-
   @Column({ type: DataType.STRING(255), allowNull: false })
   public name: string;
 
@@ -31,6 +30,4 @@ export default class Centers extends BaseModel<ICenters> implements ICenters {
 
   @Column({ type: DataType.STRING(15), allowNull: false })
   public phone: string;
-
-
 }

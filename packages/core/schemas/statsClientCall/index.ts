@@ -3,7 +3,10 @@ import { IStatsClientCall } from '../../interfaces/statsClientCall';
 import BaseModel from '../baseModel';
 
 @Table({ tableName: 'stats_client_call' })
-export default class StatsClientCall extends BaseModel<IStatsClientCall> implements IStatsClientCall {
+export default class StatsClientCall
+  extends BaseModel<IStatsClientCall>
+  implements IStatsClientCall
+{
   @Column({ type: DataType.INTEGER, allowNull: true })
   public id: number;
 
@@ -111,6 +114,4 @@ export default class StatsClientCall extends BaseModel<IStatsClientCall> impleme
 
   @Column({ type: DataType.INTEGER, allowNull: true })
   public outboundCallBackCount: number;
-
-
 }

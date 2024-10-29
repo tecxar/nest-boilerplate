@@ -1,4 +1,4 @@
-import { Disp_CategoryTypeEnum, DispositionTypeEnum } from "../../constants";
+import { Disp_CategoryTypeEnum, DispositionTypeEnum } from '../../constants';
 
 export interface IDispoSubDispo {
   id?: number;

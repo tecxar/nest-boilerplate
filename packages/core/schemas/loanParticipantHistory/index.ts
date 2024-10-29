@@ -4,8 +4,10 @@ import BaseModel from '../baseModel';
 import { ILoanParticipantHistory } from '../../interfaces/loanParticipantHistory';
 
 @Table({ tableName: 'loan_participant_history' })
-export default class LoanParticipantHistory extends BaseModel<ILoanParticipantHistory> implements ILoanParticipantHistory {
-
+export default class LoanParticipantHistory
+  extends BaseModel<ILoanParticipantHistory>
+  implements ILoanParticipantHistory
+{
   @Column({ type: DataType.STRING(50), allowNull: true })
   public loanNumber: string;
 
@@ -71,6 +73,4 @@ export default class LoanParticipantHistory extends BaseModel<ILoanParticipantHi
 
   @Column({ type: DataType.INTEGER, allowNull: true })
   public pincode: number;
-
-
 }

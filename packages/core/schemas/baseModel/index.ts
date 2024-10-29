@@ -34,8 +34,7 @@ export default class BaseModel<t>
     type: DataType.STRING(32),
     defaultValue: () => nanoid(),
   })
-  @Index
-  uid: string;
+  uId: string;
 
   @Column({ type: DataType.INTEGER.UNSIGNED })
   declare createdBy: number;

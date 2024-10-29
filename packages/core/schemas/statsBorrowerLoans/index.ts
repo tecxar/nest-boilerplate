@@ -3,8 +3,10 @@ import { IStatsBorrowerLoan } from '../../interfaces/statsBorrowerLoan';
 import BaseModel from '../baseModel';
 
 @Table({ tableName: 'stats_borrower_loan' })
-export default class StatsBorrowerLoans extends BaseModel<IStatsBorrowerLoan> implements IStatsBorrowerLoan {
-
+export default class StatsBorrowerLoans
+  extends BaseModel<IStatsBorrowerLoan>
+  implements IStatsBorrowerLoan
+{
   @Column({ type: DataType.BIGINT, allowNull: false })
   public borrowerId: string;
 
@@ -40,6 +42,4 @@ export default class StatsBorrowerLoans extends BaseModel<IStatsBorrowerLoan> im
 
   @Column({ type: DataType.DECIMAL(20, 2), allowNull: true })
   public paymentsAmount: number;
-
-
 }

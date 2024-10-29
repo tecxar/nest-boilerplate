@@ -3,8 +3,10 @@ import { ILoanParticipants } from '../../interfaces/loanParticipants';
 import BaseModel from '../baseModel';
 
 @Table({ tableName: 'loan_participants' })
-export default class LoanParticipants extends BaseModel<ILoanParticipants> implements ILoanParticipants {
-
+export default class LoanParticipants
+  extends BaseModel<ILoanParticipants>
+  implements ILoanParticipants
+{
   @Column({ type: DataType.STRING(50), allowNull: true })
   public loanNumber: string;
 
@@ -70,6 +72,4 @@ export default class LoanParticipants extends BaseModel<ILoanParticipants> imple
 
   @Column({ type: DataType.INTEGER, allowNull: true })
   public pincode: number;
-
-
 }

@@ -137,11 +137,10 @@ export enum DispositionTypeEnum {
 export enum Disp_CategoryTypeEnum {
   Contacted = 'Contacted',
   Notcontacted = 'Not contacted',
-  ContactedOthers = "Contacted - Others"
+  ContactedOthers = 'Contacted - Others',
 }
 
-export const userModules =
-{
+export const userModules = {
   Dashboard: 1,
   ClientDetail: 2,
   ClientAnalysis: 3,
@@ -166,7 +165,7 @@ export const userModules =
   NewProcessConfig: 22,
   CustomerNoticeView: 23,
   Reports: 24,
-}
+};
 
 export const dispoSubDispo = {
   dispositions: {
@@ -183,7 +182,7 @@ export const dispoSubDispo = {
     NoContact: 11,
     AlreadyPaid: 12,
     Paid: 13,
-    InboundCallQueryCall: 14
+    InboundCallQueryCall: 14,
   },
   subDispositions: {
     ptp_EMIpayment: 101,
@@ -230,5 +229,5 @@ export const dispoSubDispo = {
     CallBack_ReminderCall: 142,
     QueryCall: 143,
     FollowUp_Reminder: 144,
-  }
-}
+  },
+};

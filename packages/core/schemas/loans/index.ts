@@ -162,6 +162,4 @@ export default class Loans extends BaseModel<ILoans> implements ILoans {
 
   @Column({ type: DataType.STRING(50), allowNull: true })
   public groupId: string;
-
-
 }

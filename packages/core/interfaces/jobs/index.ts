@@ -1,61 +1,69 @@
-export interface ICreateJobs {
-  job_id: string;
-  job_type: string;
-  client_id: number;
-  total_records?: number;
-  correct_records?: number;
-  incorrect_records?: number;
-  insertedCount?: number;
-  last_inserted_record?: string;
-  progress_percentage?: number;
-  status?: 'waiting' | 'pending' | 'completed' | 'failed';
-  error_msg?: string;
-  error_file_path?: string;
+import { DatabaseObject } from '../baseObject';
+
+export interface ResponseBase {
+  success: boolean;
+  message: string;
 }
 
-export interface IJobDetails {
+export interface PaginatedResponse<T> extends ResponseBase {
+  count: number;
+  current: number;
+  rows: T[];
+}
+
+export interface ObjectResponse<T> extends ResponseBase {
+  obj: T;
+}
+
+export interface IJob extends DatabaseObject {
   id: number;
-  createdBy: string | null;
-  createdAt: string;
-  updatedBy: string | null;
-  updatedAt: string;
-  jobId: string;
-  job_type: string;
-  client_id: number;
-  total_records: number;
-  correct_records: number;
-  incorrect_records: number;
-  insertedCount: number;
-  last_inserted_record: string;
-  progress_percentage: number;
-  status?: 'waiting' | 'pending' | 'completed' | 'failed';
-  error_msg: string | null;
-  error_file_path: string;
+  type: string;
+  clientId: number;
+  totalRecords?: number;
+  correctRecords?: number;
+  incorrectRecords?: number;
+  insertedCount?: number | 0;
+  lastInsertedIndex?: number;
+  progressPercentage?: number;
+  status?:
+    | 'waiting'
+    | 'pending'
+    | 'completed'
+    | 'failed'
+    | 'inprogress'
+    | 'paused';
+  errorMsg?: string | null;
+  errorFileKey?: string | null;
+  fileKey: string;
+  isPaused?: boolean;
+}
+
+export interface IJobResult {
+  result: string;
+  errorFile?: string | null;
 }
 
 export interface IJobProgress {
-  id: number;
-  createdBy?: number | null;
-  createdAt: Date;
-  updatedBy?: number | null;
-  updatedAt: Date;
   jobId: string;
-  job_type: string;
-  client_id: number;
-  total_records: number;
-  correct_records: number;
-  incorrect_records: number;
-  insertedCount?: number;
-  last_inserted_record?: string | null;
-  progress_percentage?: number;
-  status?: 'waiting' | 'pending' | 'completed' | 'failed';
-  error_msg?: string | null;
-  error_file_path?: string | null;
-  file_path?: string | null;
+  insertedCount: number;
+  totalRecords: number;
+  progressPercentage: number;
+  lastInsertedIndex?: number;
+  isPaused?: boolean;
 }
 
-export interface IJobInitial {
-  file_key: string;
-  client_id: number;
-  file_path: string | null;
+export interface IJobResponse {
+  job: IJob;
+  jobResult: IJobResult;
+  jobProgress: IJobProgress;
 }
+
+export type JobStatus =
+  | 'completed'
+  | 'failed'
+  | 'delayed'
+  | 'prioritized'
+  | 'waiting'
+  | 'waitingChildren'
+  | 'unknown'
+  | 'discarded';

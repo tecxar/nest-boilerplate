@@ -3,9 +3,10 @@ import { IStatsHourlyCall } from '../../interfaces/statsHourlyCall';
 import BaseModel from '../baseModel';
 
 @Table({ tableName: 'stats_hourly_call' })
-export default class StatsHourlyCall extends BaseModel<IStatsHourlyCall> implements IStatsHourlyCall {
-
-
+export default class StatsHourlyCall
+  extends BaseModel<IStatsHourlyCall>
+  implements IStatsHourlyCall
+{
   @Column({ type: DataType.INTEGER, allowNull: false })
   public dayMonthYear: number;
 
@@ -39,7 +40,6 @@ export default class StatsHourlyCall extends BaseModel<IStatsHourlyCall> impleme
   @Column({ type: DataType.INTEGER, allowNull: true })
   public inboundUnknownCalls: number;
 
-
   @Column({ type: DataType.INTEGER, allowNull: true })
   public outboundCounts: number;
 
@@ -57,7 +57,6 @@ export default class StatsHourlyCall extends BaseModel<IStatsHourlyCall> impleme
 
   @Column({ type: DataType.INTEGER, allowNull: true })
   public outboundUniqueMobile: number;
-
 
   @Column({ type: DataType.INTEGER, allowNull: true })
   public outboundBusy: number;
