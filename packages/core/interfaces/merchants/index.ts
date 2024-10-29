@@ -1,5 +1,6 @@
-export interface IMerchants {
-  id?: number;
+import { IdObject } from "../idObject";
+
+export interface IMerchants extends IdObject {
   name: string;
   contactPerson?: string;
   email?: string;

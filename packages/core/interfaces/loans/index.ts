@@ -1,4 +1,6 @@
-export interface ILoans {
+import { DatabaseObject } from "../baseObject";
+
+export interface ILoans extends DatabaseObject {
   id?: number;
   borrowerId?: number;
   isActive?: boolean;

@@ -1,6 +1,6 @@
-import { DatabaseObject } from "../baseObject";
+import { IdObject } from "../idObject";
 
-export interface ICities extends DatabaseObject {
+export interface ICities extends IdObject {
   stateId: number;
   name: string;
 }

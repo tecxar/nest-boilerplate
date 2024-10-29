@@ -1,5 +1,6 @@
-export interface IDialers {
-    id?: number;
+import { IdObject } from "../idObject";
+
+export interface IDialers extends IdObject {
     userId?: number;
     dialerId?: number;
     userName?: string;

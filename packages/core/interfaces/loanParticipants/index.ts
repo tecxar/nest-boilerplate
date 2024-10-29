@@ -1,5 +1,6 @@
-export interface ILoanParticipants {
-  id?: number;
+import { DatabaseObject } from "../baseObject";
+
+export interface ILoanParticipants extends DatabaseObject {
   loanNumber?: string;
   borrowerId?: number;
   loanId?: number;

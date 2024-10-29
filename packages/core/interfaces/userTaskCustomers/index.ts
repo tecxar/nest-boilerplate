@@ -1,4 +1,6 @@
-export interface IUserTaskCustomers {
+import { DatabaseObject } from "../baseObject";
+
+export interface IUserTaskCustomers extends DatabaseObject {
   name?: string;
   loanNumber?: string;
   key?: number;

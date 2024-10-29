@@ -1,10 +1,10 @@
 import { UserTypeEnum } from "../../constants";
+import { DatabaseObject } from "../baseObject";
 import { IUserTask } from "../userTasks";
 
-export interface IUser {
+export interface IUser extends DatabaseObject {
 
     //basic detail
-    id?: number;
     firstName: string;
     lastName: string;
     userEmail: string;
