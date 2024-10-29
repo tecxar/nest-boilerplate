@@ -1,4 +1,6 @@
-export interface ICdr {
+import { DatabaseObject } from "../baseObject";
+
+export interface ICdr extends DatabaseObject {
   leadId?: string;
   number: number;
   userId?: string;

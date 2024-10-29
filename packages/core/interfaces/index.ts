@@ -35,6 +35,7 @@ export * from './centers';
 export * from './campaigns';
 export * from './borrowersHistory';
 export * from './borrowersDispositions';
+export * from './idObject'
 
 
 

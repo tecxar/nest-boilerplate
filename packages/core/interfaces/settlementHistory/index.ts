@@ -1,5 +1,6 @@
-export interface ISettlementHistory {
-  id?: number;
+import { DatabaseObject } from "../baseObject";
+
+export interface ISettlementHistory extends DatabaseObject {
   borrowerId: number;
   settlementId: number;
   loanNumber: string;

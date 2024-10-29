@@ -1,6 +1,6 @@
-export interface ILoginDetails {
-  id?: number;
-  createdBy: number;
+import { DatabaseObject } from "../baseObject";
+
+export interface ILoginDetails extends DatabaseObject {
   status: string;
   duration?: number;
 }

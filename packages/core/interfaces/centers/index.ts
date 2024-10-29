@@ -1,4 +1,6 @@
-export interface ICenters {
+import { DatabaseObject } from "../baseObject";
+
+export interface ICenters extends DatabaseObject {
   id?: number;
   name: string;
   address?: string;

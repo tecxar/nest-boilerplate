@@ -1,4 +1,6 @@
-export interface Icampaigns {
+import { DatabaseObject } from "../baseObject";
+
+export interface Icampaigns extends DatabaseObject {
     id?: number;
     clientId:number;
     dialerId:number
