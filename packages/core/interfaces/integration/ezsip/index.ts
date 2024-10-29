@@ -250,3 +250,8 @@ export interface IProductivityActivityReport {
   startDate?: string;
   endDate?: string;
 }
+
+export interface ICampaignFilter {
+  offset?: number;
+  limit?: number;
+}
