@@ -22,25 +22,25 @@ export default class BaseModel<t>
   @AutoIncrement
   @PrimaryKey
   @Column({ type: DataType.INTEGER.UNSIGNED })
-  public id: number;
+  declare id: number;
 
   @Column({
     type: DataType.STRING(32),
     defaultValue: () => nanoid(),
   })
-  uid: string;
+  uId: string;
 
   @Column({ type: DataType.INTEGER.UNSIGNED })
-  public createdBy: number;
+  declare createdBy: number;
 
   @Default(Sequelize.literal('CURRENT_TIMESTAMP'))
   @Column(DataType.DATE)
-  public createdAt: Date;
+  declare createdAt: Date;
 
   @Column(DataType.INTEGER.UNSIGNED)
-  public updatedBy: number;
+  declare updatedBy: number;
 
   @Default(Sequelize.literal('CURRENT_TIMESTAMP'))
   @Column(DataType.DATE)
-  public updatedAt: Date;
+  declare updatedAt: Date;
 }
