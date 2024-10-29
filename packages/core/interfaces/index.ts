@@ -34,6 +34,7 @@ export * from './clientStates';
 export * from './centers';
 export * from './campaigns';
 export * from './borrowersHistory';
+export * from './borrowers';
 export * from './borrowersDispositions';
 export * from './idObject'
 

@@ -1,33 +1,32 @@
 import { GenderTypeEnum } from '../../constants';
+import { DatabaseObject } from '../baseObject';
 
-export interface IBorrowers {
-  id?: number;
+export interface IBorrowers extends DatabaseObject {
   name?: string;
-  father_name?: string;
-  mother_name?: string;
+  fatherName?: string;
+  motherName?: string;
   gender?: GenderTypeEnum;
   age?: number;
   email?: string;
   pan?: string;
   address?: string;
-  city_name?: string;
-  state_name?: string;
+  cityName?: string;
+  stateName?: string;
   pincode?: number;
-  borrower_occupation?: string;
-  cibil_score?: number;
+  borrowerOccupation?: string;
+  cibilScore?: number;
   mobile?: string;
-  is_active?: boolean;
-  voter_id?: string;
-  driving_licence?: string;
+  isActive?: boolean;
+  voterId?: string;
+  drivingLicence?: string;
   dob?: Date;
-  marital_status?: string;
+  maritalStatus?: string;
   aadhar?: string;
-  community_religion?: string;
-  passport_number?: string;
-  employement_status?: string;
-  employement_type?: string;
-  company_name?: string;
+  communityReligion?: string;
+  passportNumber?: string;
+  employementStatus?: string;
+  employementType?: string;
+  companyName?: string;
   designation?: string;
-  client_borrower_id?: string;
-  uid?: string;
+  clientBorrowerId?: string;
 }

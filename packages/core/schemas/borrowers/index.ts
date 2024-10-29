@@ -43,19 +43,19 @@ export default class Breaks extends BaseModel<IBorrowers> implements IBorrowers 
     public borrowerOccupation: string;
 
     @Column({ type: DataType.DECIMAL(13, 2), allowNull: true })
-    public cibil_score: number;
+    public cibilScore: number;
 
     @Column({ type: DataType.STRING(15), allowNull: true })
     public mobile: string;
 
     @Column({ type: DataType.BOOLEAN, allowNull: true })
-    public is_active: boolean;
+    public isActive: boolean;
 
     @Column({ type: DataType.STRING(50), allowNull: true })
-    public voter_id: string;
+    public voterId: string;
 
     @Column({ type: DataType.STRING(50), allowNull: true })
-    public driving_licence: string;
+    public drivingLicence: string;
 
     @Column({ type: DataType.DATE, allowNull: true })
     public dob: Date;
