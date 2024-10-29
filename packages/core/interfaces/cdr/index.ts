@@ -1,31 +1,31 @@
 export interface ICdr {
-  leadId: string;
+  leadId?: string;
   number: number;
-  userId: string;
-  extension: number;
-  mode: string;
-  status: string;
-  date: Date;
-  hour: number;
-  minute: number;
-  duration: string;
-  queueDuration: string;
-  ringDuration: string;
-  wrapupTime: string;
-  queueName: string;
-  listId: string;
-  loanNumber: string;
-  referenceId: string;
-  processName: string;
-  recordingFileName: string;
-  isUnknown: boolean;
-  customerId: number;
-  customerName: string;
-  startTime: string;
-  endTime: string;
+  userId?: string;
+  extension?: number;
+  mode?: string;
+  status?: string;
+  date?: Date;
+  hour?: number;
+  minute?: number;
+  duration?: string;
+  queueDuration?: string;
+  ringDuration?: string;
+  wrapupTime?: string;
+  queueName?: string;
+  listId?: string;
+  loanNumber?: string;
+  referenceId?: string;
+  processName?: string;
+  recordingFileName?: string;
+  isUnknown?: boolean;
+  customerId?: number;
+  customerName?: string;
+  startTime?: string;
+  endTime?: string;
   direction: string;
-  talkDuration: string;
-  waitDuration: string;
+  talkDuration?: string;
+  waitDuration?: string;
 }
 
 export interface ICdrPayload {

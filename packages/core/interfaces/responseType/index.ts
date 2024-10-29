@@ -9,7 +9,12 @@ export interface IObject<T> extends IResponse {
   row: T;
 }
 
-export interface IArray<T> extends IResponse {
+export interface IArray<T> {
+  count: Number;
+  rows: T[];
+}
+
+export interface IFindAllRes<T> extends IResponse {
   count: Number;
   rows: T[];
 }

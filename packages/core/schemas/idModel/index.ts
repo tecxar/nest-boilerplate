@@ -1,4 +1,3 @@
-
 import { UUIDV1 } from 'sequelize';
 import {
   AutoIncrement,
@@ -6,18 +5,16 @@ import {
   DataType,
   Model,
   PrimaryKey,
-  Table
+  Table,
 } from 'sequelize-typescript';
 import { nanoid } from 'nanoid';
 
-
 @Table({ createdAt: false, updatedAt: false })
-export default class IdlModel<t>
-  extends Model {
+export default class IdlModel<t> extends Model {
   @AutoIncrement
   @PrimaryKey
   @Column({ type: DataType.INTEGER.UNSIGNED })
-  public id: number;
+  declare id: number;
 
   @Column({
     type: DataType.STRING(32),
