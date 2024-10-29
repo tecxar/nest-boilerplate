@@ -79,10 +79,10 @@ export default class BorrowersHistory
   public passportNumber: string;
 
   @Column({ type: DataType.STRING(50), allowNull: true })
-  public employementStatus: string;
+  public employmentStatus: string;
 
   @Column({ type: DataType.STRING(50), allowNull: true })
-  public employementType: string;
+  public employmentType: string;
 
   @Column({ type: DataType.STRING(150), allowNull: true })
   public companyName: string;

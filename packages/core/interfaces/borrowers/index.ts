@@ -24,8 +24,8 @@ export interface IBorrowers extends DatabaseObject {
   aadhar?: string;
   communityReligion?: string;
   passportNumber?: string;
-  employementStatus?: string;
-  employementType?: string;
+  employmentStatus?: string;
+  employmentType?: string;
   companyName?: string;
   designation?: string;
   clientBorrowerId?: string;
