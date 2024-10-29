@@ -146,6 +146,7 @@ export interface ICustomers {
   mailingState: string; // State of the customer's mailing address
   customerName: string; // Name of the customer
   mobile: string; // Customer's mobile number
+  errors: string;
 }
 
 // expected headers for csv validation

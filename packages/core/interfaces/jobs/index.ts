@@ -58,6 +58,12 @@ export interface IJobResponse {
   jobProgress: IJobProgress;
 }
 
+export interface ICsvOptions {
+  fileKey: string;
+  lastIndex?: number;
+  jobId: string;
+}
+
 export type JobStatus =
   | 'completed'
   | 'failed'
