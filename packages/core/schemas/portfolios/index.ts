@@ -3,7 +3,10 @@ import { IPortfolios } from '../../interfaces/portfolios';
 import BaseModel from '../baseModel';
 
 @Table({ tableName: 'portfolios' })
-export default class Portfolios extends BaseModel<IPortfolios> implements IPortfolios {
+export default class Portfolios
+  extends BaseModel<IPortfolios>
+  implements IPortfolios
+{
   @Column({ type: DataType.STRING(150), allowNull: false })
   public name: string;
 
@@ -15,6 +18,4 @@ export default class Portfolios extends BaseModel<IPortfolios> implements IPortf
 
   @Column({ type: DataType.INTEGER, allowNull: false })
   public clientId: number;
-
-
 }

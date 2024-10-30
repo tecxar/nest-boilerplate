@@ -2,12 +2,14 @@ import {
   AllowNull,
   Column,
   DataType,
+  HasMany,
   Index,
   Table,
 } from 'sequelize-typescript';
 import { Disp_CategoryTypeEnum, DispositionTypeEnum } from '../../constants';
 import { IDispoSubDispo } from '../../interfaces/dispoSubDispo';
 import BaseModel from '../baseModel';
+import BorrowersDispositions from '../borrowersDispositions';
 
 @Table({ tableName: 'dispo_sub_dispo' })
 export default class DispoSubDispo
@@ -42,4 +44,10 @@ export default class DispoSubDispo
     ),
   )
   declare type: DispositionTypeEnum;
+
+  @HasMany(() => BorrowersDispositions, 'dispositionId')
+  declare dispositions: BorrowersDispositions[];
+
+  @HasMany(() => BorrowersDispositions, 'subDispositionId')
+  declare subDispositions: BorrowersDispositions[];
 }

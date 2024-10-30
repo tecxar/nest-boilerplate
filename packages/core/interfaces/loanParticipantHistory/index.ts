@@ -1,5 +1,3 @@
-import { ILoanParticipants } from "../loanParticipants";
+import { ILoanParticipants } from '../loanParticipants';
 
-export interface ILoanParticipantHistory extends ILoanParticipants {
-
-}
+export interface ILoanParticipantHistory extends ILoanParticipants {}

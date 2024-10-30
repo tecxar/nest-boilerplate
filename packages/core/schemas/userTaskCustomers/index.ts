@@ -24,7 +24,7 @@ export default class UserTaskCustomers
 
   @AllowNull(false)
   @Column(DataType.INTEGER.UNSIGNED)
-  declare customerId: number;
+  declare borrowerId: number;
 
   @Column(DataType.BOOLEAN)
   declare isAttended: boolean;

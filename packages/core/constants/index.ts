@@ -115,8 +115,9 @@ export enum ActInactiveEnumType {
 
 export enum UserTypeEnum {
   internal = 'internal',
-  agency = 'agency',
-  vendor = 'vendor',
+  // agency = 'agency',
+  // vendor = 'vendor',
+  external = 'external',
 }
 
 export enum CampaignTypeEnum {
@@ -142,29 +143,31 @@ export enum Disp_CategoryTypeEnum {
 
 export const userModules = {
   Dashboard: 1,
-  ClientDetail: 2,
-  ClientAnalysis: 3,
-  Process: 4,
-  BulkMessage: 5,
-  Customer: 6,
-  DeactiveCustomers: 7,
-  AllDisposition: 8,
-  AgentProcessMapping: 9,
-  Payment: 10,
-  Templates: 11,
-  CallSummary: 12,
-  AgentActivity: 13,
-  Merchant: 14,
-  Logs: 15,
-  CommunicationStats: 16,
-  Permissions: 17,
-  EmployeeDirectory: 18,
-  RolesManagement: 19,
-  OrganizationChart: 20,
-  Settlement: 21,
-  NewProcessConfig: 22,
-  CustomerNoticeView: 23,
-  Reports: 24,
+  SetupMaster: 2,
+  Role: 3,
+  Permissions: 4,
+  Users: 5,
+  Clients: 6,
+  Campaigns: 24,
+  Portfolio: 7,
+  Templates: 8,
+  Merchants: 9,
+
+  Borrowers: 10,
+  ActiveBorrowers: 11,
+  InactiveBorrowers: 12,
+  BorrowersListing: 13,
+
+  Reports: 14,
+  CallSummary: 15,
+  AgentActivity: 16,
+  AgentProductivity: 17,
+  AgentLiveStatus: 18,
+  Settlements: 19,
+  Payments: 20,
+  Communication: 21,
+  AuditLog: 22,
+  LiveChat: 23,
 };
 
 export const dispoSubDispo = {

@@ -1,10 +1,11 @@
-import { IUserTaskCustomers } from "../userTaskCustomers";
+import { DatabaseObject } from '../baseObject';
+import { IUserTaskCustomers } from '../userTaskCustomers';
 
-export interface IUserTask {
-    id?: number;
-    isStart: boolean;
-    name: string;
-    total?: number;
-    customers?: IUserTaskCustomers[];
-    userId?: number
-  }
+export interface IUserTask extends DatabaseObject {
+  id?: number;
+  isStart: boolean;
+  name: string;
+  total?: number;
+  customers?: IUserTaskCustomers[];
+  userId?: number;
+}

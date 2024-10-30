@@ -21,10 +21,10 @@ export default class Modules extends IdlModel<IModule> implements IModule {
   @Column({ type: DataType.STRING })
   icon: string;
 
-  @HasMany(() => Permission, 'moduleId')
-  declare permissions: Permission[];
-
   @AllowNull(true)
   @Column({ type: DataType.STRING })
   url: string;
+
+  @HasMany(() => Permission, 'moduleId')
+  declare permissions: Permission[];
 }

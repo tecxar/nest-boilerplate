@@ -11,6 +11,7 @@ import BaseModel from '../baseModel';
 import Cities from '../cities';
 import States from '../states';
 import ClientStates from '../clientStates';
+import Settlements from '../settlements';
 @Table({ tableName: 'clients' })
 export default class Clients extends BaseModel<IClients> implements IClients {
   @AllowNull(false)
@@ -54,4 +55,7 @@ export default class Clients extends BaseModel<IClients> implements IClients {
 
   @HasMany(() => ClientStates, 'clientId')
   declare clientStates: ClientStates[];
+
+  @HasMany(() => Settlements, 'clientId')
+  declare clientSettlements: Settlements[];
 }

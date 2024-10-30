@@ -1,4 +1,6 @@
-export interface IClients {
+import { DatabaseObject } from '../baseObject';
+
+export interface IClients extends DatabaseObject {
   id?: number;
   name: string;
   contactPerson?: string;
@@ -11,5 +13,5 @@ export interface IClients {
   cityId?: number;
   stateId?: number;
   isISG?: boolean;
-  registeredGst?:string;
+  registeredGst?: string;
 }

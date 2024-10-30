@@ -1,6 +1,13 @@
-import { AllowNull, Column, DataType, Table } from 'sequelize-typescript';
+import {
+  AllowNull,
+  Column,
+  DataType,
+  HasMany,
+  Table,
+} from 'sequelize-typescript';
 import { IDialers } from '../../interfaces/dialers';
 import BaseModel from '../baseModel';
+import Campaigns from '../campaigns';
 
 @Table({ tableName: 'dialers' })
 export default class Dialers extends BaseModel<IDialers> implements IDialers {
@@ -10,4 +17,7 @@ export default class Dialers extends BaseModel<IDialers> implements IDialers {
 
   @Column(DataType.BOOLEAN)
   declare isActive: boolean;
+
+  @HasMany(() => Campaigns, 'dialerId')
+  declare campaigns: Campaigns[];
 }

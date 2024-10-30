@@ -22,13 +22,13 @@ export default class Campaigns
   @Column(DataType.INTEGER.UNSIGNED)
   clientId: number;
   @BelongsTo(() => Clients)
-  client: Clients;
+  campaignsclient: Clients;
 
   @ForeignKey(() => Dialers)
   @Column(DataType.INTEGER.UNSIGNED)
   dialerId: number;
   @BelongsTo(() => Dialers)
-  dialerid: Dialers;
+  dialer: Dialers;
 
   @Column(DataType.STRING(100))
   name: string;

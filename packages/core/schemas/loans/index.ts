@@ -1,14 +1,24 @@
-import { Column, DataType, Table } from 'sequelize-typescript';
+import {
+  BelongsTo,
+  Column,
+  DataType,
+  ForeignKey,
+  Table,
+} from 'sequelize-typescript';
 import { ILoans } from '../../interfaces/loans';
 import BaseModel from '../baseModel';
+import Borrowers from '../borrowers';
 
 @Table({ tableName: 'loans' })
 export default class Loans extends BaseModel<ILoans> implements ILoans {
   @Column({ type: DataType.INTEGER, allowNull: true })
   public id: number;
 
+  @ForeignKey(() => Borrowers)
   @Column({ type: DataType.INTEGER, allowNull: true })
   public borrowerId: number;
+  @BelongsTo(() => Borrowers)
+  LoanBorrower: Borrowers;
 
   @Column({ type: DataType.BOOLEAN, allowNull: true })
   public isActive: boolean;
@@ -162,6 +172,4 @@ export default class Loans extends BaseModel<ILoans> implements ILoans {
 
   @Column({ type: DataType.STRING(50), allowNull: true })
   public groupId: string;
-
-
 }

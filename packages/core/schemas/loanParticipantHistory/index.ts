@@ -1,16 +1,28 @@
-import { Column, DataType, Table } from 'sequelize-typescript';
+import {
+  BelongsTo,
+  Column,
+  DataType,
+  ForeignKey,
+  Table,
+} from 'sequelize-typescript';
 import { ILoanParticipants } from '../../interfaces/loanParticipants';
 import BaseModel from '../baseModel';
 import { ILoanParticipantHistory } from '../../interfaces/loanParticipantHistory';
+import Borrowers from '../borrowers';
 
 @Table({ tableName: 'loan_participant_history' })
-export default class LoanParticipantHistory extends BaseModel<ILoanParticipantHistory> implements ILoanParticipantHistory {
-
+export default class LoanParticipantHistory
+  extends BaseModel<ILoanParticipantHistory>
+  implements ILoanParticipantHistory
+{
   @Column({ type: DataType.STRING(50), allowNull: true })
   public loanNumber: string;
 
+  @ForeignKey(() => Borrowers)
   @Column({ type: DataType.BIGINT, allowNull: true })
   public borrowerId: number;
+  @BelongsTo(() => Borrowers)
+  participantHistoryBorrower: Borrowers;
 
   @Column({ type: DataType.INTEGER, allowNull: true })
   public loanId: number;
@@ -71,6 +83,4 @@ export default class LoanParticipantHistory extends BaseModel<ILoanParticipantHi
 
   @Column({ type: DataType.INTEGER, allowNull: true })
   public pincode: number;
-
-
 }
