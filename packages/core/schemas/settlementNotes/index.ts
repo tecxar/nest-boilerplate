@@ -1,5 +1,6 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { ISettlementNotes } from '../../interfaces/settlementNotes';
+import Borrowers from '../borrowers';
 
 @Table({ tableName: 'settlement_notes' })
 export default class SettlementNotes
@@ -33,8 +34,11 @@ export default class SettlementNotes
   @Column({ type: DataType.BOOLEAN, allowNull: true })
   public isclient: boolean;
 
+  @ForeignKey(() => Borrowers)
   @Column({ type: DataType.INTEGER, allowNull: false })
   public borrowerId: number;
+  @BelongsTo(() => Borrowers)
+  settlementNotesBorrower: Borrowers;
 
   @Column({ type: DataType.STRING(50), allowNull: false })
   public loanNumber: string;

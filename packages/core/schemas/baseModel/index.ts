@@ -10,9 +10,11 @@ import {
   DataType,
   Index,
   AllowNull,
+  HasOne,
 } from 'sequelize-typescript';
 import { nanoid } from 'nanoid';
 import { DatabaseObject } from '../../interfaces';
+import User from '../users';
 
 export type DatabaseObjectCreationAttribute = Optional<DatabaseObject, 'id'>;
 
@@ -28,7 +30,7 @@ export default class BaseModel<t>
 {
   @AutoIncrement
   @PrimaryKey
-  @Column({ type: DataType.INTEGER.UNSIGNED })
+  @Column({ type: DataType.BIGINT })
   declare id: number;
 
   @Column({
@@ -37,14 +39,14 @@ export default class BaseModel<t>
   })
   uId: string;
 
-  @Column({ type: DataType.INTEGER.UNSIGNED })
+  @Column({ type: DataType.BIGINT })
   declare createdBy: number;
 
   @Default(Sequelize.literal('CURRENT_TIMESTAMP'))
   @Column(DataType.DATE)
   declare createdAt: Date;
 
-  @Column(DataType.INTEGER.UNSIGNED)
+  @Column(DataType.BIGINT)
   declare updatedBy: number;
 
   @Default(Sequelize.literal('CURRENT_TIMESTAMP'))
@@ -55,3 +57,4 @@ export default class BaseModel<t>
   @Column(DataType.DATE)
   declare deletedAt: Date;
 }
+

@@ -8,12 +8,15 @@ import {
   Column,
   DataType,
   ForeignKey,
+  HasMany,
   Table,
 } from 'sequelize-typescript';
 import { UserTypeEnum } from '../../constants';
 import { IUser } from '../../interfaces/users';
 import BaseModel from '../baseModel';
 import Roles from '../role';
+import LoginDetails from '../loginDetails';
+import UserTasks from '../userTasks';
 
 @Table({
   tableName: 'users',
@@ -112,6 +115,16 @@ export default class User extends BaseModel<IUser> implements IUser {
   @Column(DataType.INTEGER.UNSIGNED)
   dialerId?: number;
 
+  @AllowNull(true)
+  @Column(DataType.BIGINT)
+  centerId: number;
+
+  @HasMany(() => LoginDetails, 'userId')
+  declare loginDetails: LoginDetails[];
+
+  @HasMany(() => UserTasks, 'userId')
+  declare userTasks: UserTasks[];
+
   @BeforeUpdate
   @BeforeCreate
   static encryptPassword(instance: User) {
@@ -127,6 +140,4 @@ export default class User extends BaseModel<IUser> implements IUser {
     });
   }
 
-  // @HasMany(() => UserTasks, 'userId')
-  // userTasks: UserTasks;
 }

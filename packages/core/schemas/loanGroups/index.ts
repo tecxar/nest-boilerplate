@@ -1,6 +1,8 @@
-import { Column, DataType, Table } from 'sequelize-typescript';
+import { Column, DataType, HasMany, Table } from 'sequelize-typescript';
 import { ILoanGroups } from '../../interfaces/loanGroups';
 import BaseModel from '../baseModel';
+import Loans from '../loans';
+import LoanHistory from '../loansHistory';
 
 @Table({ tableName: 'loan_groups' })
 export default class LoanGroups
@@ -30,4 +32,10 @@ export default class LoanGroups
 
   @Column({ type: DataType.INTEGER, allowNull: true })
   public loanCounts: number;
+
+  @HasMany(() => Loans, 'groupId')
+  declare loans: Loans[];
+
+  @HasMany(() => LoanHistory, 'groupId')
+  declare loanHistories: LoanHistory[];
 }

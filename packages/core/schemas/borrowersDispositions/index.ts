@@ -1,14 +1,18 @@
-import { Column, DataType, Table } from 'sequelize-typescript';
+import { BelongsTo, Column, DataType, ForeignKey, Table } from 'sequelize-typescript';
 import { IBorrowersDispositions } from '../../interfaces/borrowersDispositions';
 import BaseModel from '../baseModel';
+import Borrowers from '../borrowers';
 
 @Table({ tableName: 'borrowers_dispostions' })
 export default class BorrowersDispositions
   extends BaseModel<IBorrowersDispositions>
   implements IBorrowersDispositions
 {
+  @ForeignKey(() => Borrowers)
   @Column({ type: DataType.INTEGER, allowNull: false })
   public borrowerId: number;
+  @BelongsTo(() => Borrowers)
+  borrower: Borrowers;
 
   @Column({ type: DataType.STRING(50), allowNull: false })
   public loanNumber: string;

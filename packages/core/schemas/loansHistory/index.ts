@@ -1,14 +1,18 @@
-import { Column, DataType, Table } from 'sequelize-typescript';
+import { BelongsTo, Column, DataType, ForeignKey, Table } from 'sequelize-typescript';
 import { ILoanHistory } from '../../interfaces/loanHistory';
 import BaseModel from '../baseModel';
+import Borrowers from '../borrowers';
 
 @Table({ tableName: 'loan_history' })
 export default class LoanHistory
   extends BaseModel<ILoanHistory>
   implements ILoanHistory
 {
+   @ForeignKey(() => Borrowers)
   @Column({ type: DataType.INTEGER, allowNull: true })
   public borrowerId: number;
+  @BelongsTo(() => Borrowers)
+  loanHistoryBorrower: Borrowers;
 
   @Column({ type: DataType.BOOLEAN, allowNull: true })
   public isActive: boolean;

@@ -7,7 +7,7 @@ export interface IUserTaskCustomers extends DatabaseObject {
   isAttended?: Boolean;
   isPending?: Boolean;
   agentTaskId?: number;
-  customerId?: number;
+  borrowerId?: number;
   disposition?: string;
   subDisposition?: string;
   comments?: string;

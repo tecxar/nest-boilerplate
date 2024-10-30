@@ -1,13 +1,17 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { ISettlements } from '../../interfaces/settlements';
+import Borrowers from '../borrowers';
 
 @Table({ tableName: 'settlements' })
 export default class Settlements
   extends Model<ISettlements>
   implements ISettlements
 {
+  @ForeignKey(() => Borrowers)
   @Column({ type: DataType.BIGINT, allowNull: false })
   public borrowerId: number;
+  @BelongsTo(() => Borrowers)
+  settlementBorrower: Borrowers;
 
   @Column({ type: DataType.INTEGER, allowNull: false })
   public settlementId: number;
@@ -57,7 +61,7 @@ export default class Settlements
   @Column({ type: DataType.STRING(20), allowNull: true })
   public clientStatus: string;
 
-  @Column({ type: DataType.INTEGER, allowNull: false })
+  @Column({ type: DataType.BIGINT, allowNull: false })
   public clientId: number;
 
   @Column({ type: DataType.TEXT, allowNull: true })

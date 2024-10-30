@@ -1,6 +1,7 @@
-import { Column, DataType, Table } from 'sequelize-typescript';
+import { Column, DataType, HasMany, Table } from 'sequelize-typescript';
 import { ICenters } from '../../interfaces/centers';
 import BaseModel from '../baseModel';
+import User from '../users';
 
 @Table({ tableName: 'centers' })
 export default class Centers extends BaseModel<ICenters> implements ICenters {
@@ -30,4 +31,7 @@ export default class Centers extends BaseModel<ICenters> implements ICenters {
 
   @Column({ type: DataType.STRING(15), allowNull: false })
   public phone: string;
+
+  @HasMany(() => User, 'centerId')
+  declare centerUsers: User[];
 }

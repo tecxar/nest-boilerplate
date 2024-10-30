@@ -1,13 +1,17 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { ISettlementHistory } from '../../interfaces/settlementHistory';
+import Borrowers from '../borrowers';
 
 @Table({ tableName: 'settlement_history' })
 export default class SettlementHistory
   extends Model<ISettlementHistory>
   implements ISettlementHistory
 {
+  @ForeignKey(() => Borrowers)
   @Column({ type: DataType.BIGINT, allowNull: false })
   public borrowerId: number;
+  @BelongsTo(() => Borrowers)
+  settlementHistoryBorrower: Borrowers;
 
   @Column({ type: DataType.INTEGER, allowNull: false })
   public settlementId: number;

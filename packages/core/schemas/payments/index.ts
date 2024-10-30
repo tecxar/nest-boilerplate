@@ -1,10 +1,13 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import { BelongsTo, Column, DataType, Model, Table } from 'sequelize-typescript';
 import { IPayments } from '../../interfaces/payments';
+import Borrowers from '../borrowers';
 
 @Table({ tableName: 'payments' })
 export default class Payments extends Model<IPayments> implements IPayments {
   @Column({ type: DataType.BIGINT, allowNull: false })
   public borrowerId: number;
+  @BelongsTo(() => Borrowers)
+  paymentBorrower: Borrowers;
 
   @Column({ type: DataType.STRING(100), allowNull: true })
   public clientName: string;
