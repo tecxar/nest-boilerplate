@@ -18,18 +18,14 @@ export class S3Module extends S3ModuleDefinition.ConfigurableModuleClass {
    * @property { string } accessKeyId - The AWS S3 Access Key Id.
    * @property {string} secretAccessKey - The AWS S3 Secret Access Key.
    */
-  static forRoot(): DynamicModule {
+  static forRoot(
+    options: typeof S3ModuleDefinition.OPTIONS_TYPE,
+  ): DynamicModule {
     return {
       module: S3Module,
       imports: [
         AwsSdkModule.register({
-          client: new S3Client({
-            region: constants.AWS.REGION,
-            credentials: {
-              accessKeyId: constants.AWS.ACCESS_KEY_ID,
-              secretAccessKey: constants.AWS.SECRET_ACCESS_KEY,
-            },
-          }),
+          client: new S3Client(options.config),
         }),
       ],
       exports: [AwsSdkModule],
@@ -39,15 +35,14 @@ export class S3Module extends S3ModuleDefinition.ConfigurableModuleClass {
   static forRootAsync(
     options: typeof S3ModuleDefinition.ASYNC_OPTIONS_TYPE,
   ): DynamicModule {
-    console.log('42 ==================== ', options);
     return {
       module: S3Module,
       imports: [
+        ...(options.imports || []),
         AwsSdkModule.registerAsync({
           clientType: S3Client as unknown as new (...args: any[]) => S3Client,
           useFactory: async (...args) => {
             const s3Options = await options.useFactory!(...args);
-            console.log('50 ==================== ', s3Options);
             const s3 = new S3Client(s3Options.config);
             try {
               console.log('Connected to S3');
@@ -56,6 +51,8 @@ export class S3Module extends S3ModuleDefinition.ConfigurableModuleClass {
             }
             return s3;
           },
+          inject: (options.inject as any) || [],
+          imports: options.imports || [],
         }),
       ],
       providers: [
