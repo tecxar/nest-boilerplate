@@ -35,6 +35,7 @@ export class S3Module extends S3ModuleDefinition.ConfigurableModuleClass {
   static forRootAsync(
     options: typeof S3ModuleDefinition.ASYNC_OPTIONS_TYPE,
   ): DynamicModule {
+    const S3_OPTIONS_TOKEN = constants.AWS.S3.OPTIONS_TOKEN;
     return {
       module: S3Module,
       imports: [
@@ -57,8 +58,16 @@ export class S3Module extends S3ModuleDefinition.ConfigurableModuleClass {
       ],
       providers: [
         {
-          provide: constants.AWS.S3.BUCKET,
-          useValue: options.bucketName,
+          provide: S3_OPTIONS_TOKEN,
+          useFactory: async (...args) => {
+            return await options.useFactory!(...args);
+          },
+          inject: (options.inject as any) || [],
+        },
+        {
+          provide: constants.AWS.S3.PROVIDER,
+          useFactory: (s3Options: any) => s3Options.bucketName,
+          inject: [S3_OPTIONS_TOKEN],
         },
       ],
       exports: [AwsSdkModule],

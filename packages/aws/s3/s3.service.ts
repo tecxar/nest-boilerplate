@@ -15,7 +15,7 @@ export class S3Service {
   constructor(
     @InjectAws(S3Client as unknown as new (...args: any[]) => S3Client)
     private readonly s3Client: S3Client,
-    @Inject(constants.AWS.S3.BUCKET) private readonly bucketName: string,
+    @Inject(constants.AWS.S3.PROVIDER) private readonly bucketName: string,
   ) {}
 
   /**
