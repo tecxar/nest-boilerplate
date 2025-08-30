@@ -1,0 +1,35 @@
+{
+  "name": "@cleardu/aws",
+  "version": "1.0.24",
+  "description": "Nest - modern, fast, powerful node.js web framework (@aws)",
+  "author": "Kamil Mysliwiec",
+  "license": "MIT",
+  "homepage": "https://nestjs.com",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/nest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nestjs/nest.git",
+    "directory": "packages/aws"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.674.0",
+    "@aws-sdk/s3-request-presigner": "^3.674.0",
+    "aws-sdk-v3-nest": "^1.0.0",
+    "tslib": "^2.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "typescript": "^5.6.3"
+  },
+  "peerDependencies": {
+    "@types/node": "^22.7.5",
+    "rxjs": "^7.1.0",
+    "typescript": "^5.6.3"
+  }
+}

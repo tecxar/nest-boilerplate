@@ -1,4 +1,3 @@
-# compiled output
-/dist
-.npmrc
-coverage
+packages/**/*.d.ts
+packages/**/*.js
+.nyc_output

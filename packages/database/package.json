@@ -1,0 +1,35 @@
+{
+  "name": "@cleardu/database",
+  "version": "1.0.24",
+  "description": "Nest - modern, fast, powerful node.js web framework (@database)",
+  "homepage": "https://nestjs.com",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/nest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nestjs/nest.git",
+    "directory": "packages/database"
+  },
+  "keywords": [
+    "database"
+  ],
+  "author": "cleardu",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@nestjs/common": "^10.0.0",
+    "tslib": "2.7.0",
+    "ws": "8.18.0"
+  },
+  "devDependencies": {
+    "@cleardu/interfaces": "^1.0.13"
+  },
+  "peerDependencies": {
+    "@cleardu/interfaces": "^1.0.0",
+    "rxjs": "^7.1.0"
+  }
+}

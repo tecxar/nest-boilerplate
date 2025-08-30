@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.build.json",
+  "compilerOptions": {
+    "outDir": ".",
+    "rootDir": ".",
+    "paths": {
+      "@cleardu/core": ["../core"],
+      "@cleardu/core/*": ["../core/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist", "test/**/*", "*.spec.ts"],
+  "references": [
+    {
+      "path": "../core/tsconfig.build.json"
+    }
+  ]
+}

@@ -1,22 +1,27 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
-    "declaration": true,
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
     "removeComments": true,
+    "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
+    "useUnknownInCatchVariables": false,
     "target": "ES2021",
     "sourceMap": true,
+    "allowJs": false,
     "outDir": "./dist",
-    "baseUrl": "./",
-    "incremental": true,
-    "skipLibCheck": true,
-    "strictNullChecks": true,
-    "noImplicitAny": true,
-    "strictBindCallApply": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true
-  }
+    "baseUrl": ".",
+    "paths": {
+      "@cleardu/interfaces": ["./packages/interfaces"],
+      "@cleardu/interfaces/*": ["./packages/interfaces/*"],
+      "@cleardu/schemas": ["./packages/schemas"],
+      "@cleardu/schemas/*": ["./packages/schemas/*"],
+      "@cleardu/common": ["./packages/common"],
+      "@cleardu/common/*": ["./packages/common/*"]
+    }
+  },
+  "include": ["packages/**/*", "integration/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }
